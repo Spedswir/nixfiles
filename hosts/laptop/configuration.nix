@@ -4,6 +4,7 @@
   imports =
     [ # Include the results of the hardware scan.
       /etc/nixos/hardware-configuration.nix
+      ~/nix-conf/aliases/bash-aliases-laptop.nix
     ];
 
   # Use the GRUB 2 boot loader.
@@ -15,7 +16,7 @@
 
   # Enable networking
   networking.networkmanager.enable = true;
-  networking.hostName = "spedswir-linux-vm"; # Define your hostname.
+  networking.hostName = "spedswir-laptop"; # Define your hostname.
   networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
@@ -74,6 +75,18 @@
     packages = with pkgs; [
       kdePackages.kate
     ];
+  };
+
+  services.displayManager = {
+    autoLogin.enable = true;
+    autoLogin.user = "spedswir";
+  };
+
+  home-manager = {
+    extraSpecialArgs = { inherit inputs; };
+    users = {
+      "spedswir" = import ./home.nix;
+    };
   };
 
   # Install firefox.
