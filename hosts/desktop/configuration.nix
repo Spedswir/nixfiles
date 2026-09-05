@@ -4,7 +4,7 @@
   imports =
     [ # Include the results of the hardware scan.
       /etc/nixos/hardware-configuration.nix
-      ~/nix-conf/aliases/bash-aliases-desktop.nix
+      /home/${username}/nix-conf/aliases/bash-aliases-desktop.nix
     ];
 
   # Use the GRUB 2 boot loader.

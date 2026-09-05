@@ -9,7 +9,7 @@
 
       shellAliases = {
         garbage = "sudo nix-collect-garbage --delete-older-than 14d";
-        rebuild = "sudo nix flake update; sudo nixos-rebuild switch --flake ~/nix-conf/#laptop";
+        rebuild = "sudo nix flake update; sudo nixos-rebuild switch --flake /home/${username}/nix-conf/#laptop";
       };
     };
   };

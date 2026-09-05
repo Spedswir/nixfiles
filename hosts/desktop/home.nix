@@ -1,14 +1,14 @@
 { config, pkgs, ... }:
 
 {
-  imports = [
-      ~/nix-conf/modules/home-manager/btop.nix
-  ];
-
   # Home Manager needs a bit of information about you and the paths it should
   # manage.
   home.username = "spedswir";
   home.homeDirectory = "/home/spedswir";
+
+  imports = [
+      ${homeDirectory}/nix-conf/modules/home-manager/btop.nix
+  ];
 
   # This value determines the Home Manager release that your configuration is
   # compatible with. This helps avoid breakage when a new Home Manager release
