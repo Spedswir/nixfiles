@@ -1,10 +1,13 @@
 { config, pkgs, ... }:
 
+let
+  vars = import ../modules/vars.nix;
+in
 {
   # Home Manager needs a bit of information about you and the paths it should
   # manage.
-  home.username = "spedswir";
-  home.homeDirectory = "/home/spedswir";
+  home.username = "${vars.username}";
+  home.homeDirectory = "${vars.homeDir}";
 
   imports = [
       ../../modules/home-manager/btop.nix

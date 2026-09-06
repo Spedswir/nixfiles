@@ -1,10 +1,9 @@
 { config, pkgs, lib, ... }:
 
+let
+  vars = import ../modules/vars.nix;
+in
 {
-  imports = [
-    ../modules/vars.nix
-  ];
-
   programs = {
     command-not-found.enable = false;
 
@@ -13,7 +12,7 @@
 
       shellAliases = {
         garbage = "sudo nix-collect-garbage --delete-older-than 14d";
-        rebuild = "sudo nix flake update --flake /home/${config.vars.username}/nix-conf/; sudo nixos-rebuild switch --flake /home/${config.vars.username}/nix-conf/#laptop --impure";
+        rebuild = "sudo nix flake update --flake ${vars.homeDir}/nix-conf/; sudo nixos-rebuild switch --flake ${vars.homeDir}/nix-conf/#laptop --impure";
       };
     };
   };

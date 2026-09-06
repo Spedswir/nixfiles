@@ -1,9 +1,12 @@
 { config, pkgs, inputs, ... }:
 
+let
+  vars = import ../../modules/vars.nix;
+in
 {
   imports =
     [ # Include the results of the hardware scan.
-      ../../hardware-configuration.nix
+      ./hardware-configuration.nix
     ];
 
   # Use the GRUB 2 boot loader.
@@ -15,7 +18,7 @@
 
   # Enable networking
   networking.networkmanager.enable = true;
-  networking.hostName = "spedswir-linux-vm"; # Define your hostname.
+  networking.hostName = "${vars.username}-desktop-vm"; # Define your hostname.
   networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
@@ -67,7 +70,7 @@
   services.libinput.enable = true;
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
-  users.users."spedswir" = {
+  users.users."${vars.username}" = {
     isNormalUser = true;
     description = "Spedswir";
     extraGroups = [ "networkmanager" "wheel" ];
@@ -78,13 +81,13 @@
 
   services.displayManager = {
     autoLogin.enable = true;
-    autoLogin.user = "spedswir";
+    autoLogin.user = "${vars.username}";
   };
 
   home-manager = {
     extraSpecialArgs = { inherit inputs; };
     users = {
-      "spedswir" = import ./home.nix;
+      "${vars.username}" = import ./home.nix;
     };
   };
 
