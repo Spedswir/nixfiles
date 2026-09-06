@@ -7,7 +7,8 @@
   home.homeDirectory = "/home/spedswir";
 
   imports = [
-      ${homeDirectory}/nix-conf/modules/home-manager/btop.nix
+      ../../modules/home-manager/btop.nix
+      ../../aliases/bash-aliases-laptop.nix
   ];
 
   # This value determines the Home Manager release that your configuration is
