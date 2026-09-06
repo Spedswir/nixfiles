@@ -1,7 +1,7 @@
 { config, pkgs, inputs, ... }:
 
 let
-  vars = import ../../modules/vars.nix;
+  vars = import ./../../modules/vars.nix;
 in
 {
   imports =
