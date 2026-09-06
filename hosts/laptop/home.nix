@@ -1,7 +1,7 @@
 { config, pkgs, ... }:
 
 let
-  vars = import ../modules/vars.nix;
+  vars = import ../../modules/vars.nix;
 in
 {
   # Home Manager needs a bit of information about you and the paths it should
