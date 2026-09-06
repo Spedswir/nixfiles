@@ -1,7 +1,11 @@
 { config, pkgs, ... }:
 
 {
-    programs.haruna.enable = true;
-    programs.feishin.enable = true;
     programs.freetube.enable = true;
+    programs.brave-bin.enable = true;
+
+    home.packages = [
+        pkgs.feishin
+        pkgs.haruna
+    ];
 }

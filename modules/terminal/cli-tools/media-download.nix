@@ -1,6 +1,8 @@
 { config, pkgs, ... }:
 
 {
-    programs.yt-dlp.enable = true;
-    programs.gallerydl.enable = true;
+    programs = {
+        yt-dlp.enable = true;
+        gallery-dl.enable = true;
+    };
 }

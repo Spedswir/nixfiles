@@ -7,6 +7,8 @@ in
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
+      ../../modules/nixos/network-drives.nix
+      ../../modules/nixos/users.nix
     ];
 
   # Use the GRUB 2 boot loader.
@@ -49,6 +51,19 @@ in
   services.displayManager.sddm.enable = true;
   services.desktopManager.plasma6.enable = true;
 
+  hardware.graphics.enable = true;
+  # Enable these if nvidia GPU is present
+  services.xserver.videoDrivers = [ "nvidia" ];
+  hardware.nvidia.modesetting.enable = true;
+  hardware.nvidia.open = false; # False uses the proprietary driver.
+
+  # Configuring PRIME - https://wiki.nixos.org/wiki/NVIDIA#Hybrid_graphics_with_PRIME
+  hardware.nvidia.prime = {
+    # intelBusId = "";
+    # nvidiaBusId = "";
+    # amdgpuBusId = ""; # If you have an AMD iGPU
+  };
+
   # Configure keymap in X11
   services.xserver.xkb = {
     layout = "au";
@@ -71,16 +86,6 @@ in
   # Enable touchpad support (enabled default in most desktopManager).
   services.libinput.enable = true;
 
-  # Define a user account. Don't forget to set a password with ‘passwd’.
-  users.users."${vars.username}" = {
-    isNormalUser = true;
-    description = "Spedswir";
-    extraGroups = [ "networkmanager" "wheel" ];
-    packages = with pkgs; [
-      kdePackages.kate
-    ];
-  };
-
   services.displayManager = {
     autoLogin.enable = true;
     autoLogin.user = "${vars.username}";
@@ -92,9 +97,6 @@ in
       "${vars.username}" = import ./home.nix;
     };
   };
-
-  # Install firefox.
-  programs.firefox.enable = true;
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;

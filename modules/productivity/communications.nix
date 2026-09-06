@@ -1,6 +1,6 @@
 { config, pkgs, ... }:
 
 {
-    programs.element.enable = true;
+    programs.element-desktop.enable = true;
     programs.discord.enable = true;
 }
