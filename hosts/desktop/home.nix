@@ -10,8 +10,10 @@ in
   home.homeDirectory = "${vars.homeDir}";
 
   imports = [
-      ../../modules/home-manager/btop.nix
-      ../../aliases/bash-aliases-desktop.nix
+    ../../modules/default-apps.nix
+    ../../aliases/bash-aliases-desktop.nix
+    ../../modules/languages/japanese.nix
+    ../../modules/terminal/cli-tools/media-download.nix
   ];
 
   # This value determines the Home Manager release that your configuration is

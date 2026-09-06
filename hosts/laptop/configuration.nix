@@ -21,6 +21,8 @@ in
   networking.hostName = "${vars.username}-laptop"; # Define your hostname.
   networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
+  hardware.bluetooth.enable = true;
+
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
   time.timeZone = "Australia/Perth";
@@ -98,10 +100,7 @@ in
   nixpkgs.config.allowUnfree = true;
 
   environment.systemPackages = with pkgs; [
-    git
-    btop
-    fastfetch
-    kitty
+
   ];
 
   # ===== DON'T CHANGE =====
