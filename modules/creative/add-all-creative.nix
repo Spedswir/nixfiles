@@ -1,7 +1,7 @@
 { config, pkgs, ... }:
 
 {
-    includes = [
+    imports = [
         ./audio-creation.nix
         ./programming/game-creation.nix
         ./video-creation.nix

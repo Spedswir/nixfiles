@@ -14,5 +14,6 @@
     home.packages = [
         pkgs.proton-vpn
         pkgs.qdirstat
+        pkgs.nix-search-tv
     ];
 }

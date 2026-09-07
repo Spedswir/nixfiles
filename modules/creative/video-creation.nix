@@ -2,7 +2,7 @@
 
 {
     home.packages = [
-        pkgs.kdenlive
+        pkgs.kdePackages.kdenlive
     ];
 
     programs.obs-studio = {
@@ -12,7 +12,7 @@
         package = (
             pkgs.obs-studio.override {
                 cudaSupport = true;
-            };
+            }
         );
 
         plugins = with pkgs.obs-studio-plugins; [

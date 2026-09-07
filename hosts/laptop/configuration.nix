@@ -10,6 +10,7 @@ in
       ../../modules/nixos/network-drives.nix
       ../../modules/nixos/users.nix
       ../../modules/nixos/gaming.nix
+      ../../modules/nixos/bluetooth.nix
     ];
 
   # Use the GRUB 2 boot loader.
@@ -23,8 +24,6 @@ in
   networking.networkmanager.enable = true;
   networking.hostName = "${vars.username}-laptop"; # Define your hostname.
   networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
-
-  hardware.bluetooth.enable = true;
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 

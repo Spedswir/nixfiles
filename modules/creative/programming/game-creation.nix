@@ -1,7 +1,7 @@
 { config, pkgs, ... }:
 
 {
-    includes = [
+    imports = [
         ./ides/vs-code.nix
     ];
 

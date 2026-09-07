@@ -40,6 +40,6 @@
     };
 
     home.packages = [
-        dotnetCorePackages.dotnet_9.sdk # For Godot-Mono VSCode-Extension CSharp
+        pkgs.dotnetCorePackages.dotnet_9.sdk # For Godot-Mono VSCode-Extension CSharp
     ];
 }
