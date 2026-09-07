@@ -9,6 +9,7 @@ in
       ./hardware-configuration.nix
       ../../modules/nixos/network-drives.nix
       ../../modules/nixos/users.nix
+      ../../modules/nixos/gaming.nix
     ];
 
   # Use the GRUB 2 boot loader.

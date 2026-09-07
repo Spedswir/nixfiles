@@ -8,12 +8,11 @@
       ./productivity/multimedia.nix
     ];
 
-    programs.qdirstat.enable = true;
-    programs.nerd-fonts.enable = true;
-    programs.brave-bin.enable = true;
+    programs.brave.enable = true;
     programs.firefox.enable = true;
 
     home.packages = [
         pkgs.protonvpn-gui
+        pkgs.qdirstat
     ];
 }

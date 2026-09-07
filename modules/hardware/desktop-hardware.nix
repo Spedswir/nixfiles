@@ -1,9 +1,9 @@
 { config, pkgs, ... }:
 
 {
-    programs = {
-        solaar.enable = true;
-        streamdeck-ui.enable = true;
-        goxlr-utility.enable = true;
-    };
+    home.packages = [
+        pkgs.goxlr-utility
+        pkgs.solaar
+        pkgs.streamdeck-ui
+    ];
 }
