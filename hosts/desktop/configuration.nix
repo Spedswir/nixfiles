@@ -4,14 +4,14 @@ let
   vars = import ../../modules/vars.nix;
 in
 {
-  imports =
-    [ # Include the results of the hardware scan.
-      ./hardware-configuration.nix
+  imports = [
+    # Include the results of the hardware scan.
+    ./hardware-configuration.nix
 
-      ../../modules/nixos/network-drives.nix
-      ../../modules/nixos/users.nix
-      ../../modules/nixos/gaming.nix
-    ];
+    ../../modules/nixos/network-drives.nix
+    ../../modules/nixos/users.nix
+    ../../modules/nixos/gaming.nix
+  ];
 
   # Use the GRUB 2 boot loader.
   boot.loader.grub.enable = true;

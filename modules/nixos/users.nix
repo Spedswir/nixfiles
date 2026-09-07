@@ -11,7 +11,6 @@ in
     isNormalUser = true;
     description = "Spedswir";
     extraGroups = [ "networkmanager" "wheel" ];
-    shell = pkgs.kitty;
     packages = with pkgs; [
       kdePackages.kate
     ];
