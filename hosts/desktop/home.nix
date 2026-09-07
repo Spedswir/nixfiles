@@ -20,6 +20,7 @@ in
     ../../modules/terminal/cli-tools/media-download.nix
     ../../modules/gaming/gaming.nix
     ../../modules/hardware/desktop-hardware.nix
+    ../../modules/creative/add-all-creative.nix
   ];
 
   home.stateVersion = "26.05"; # Please read the comment before changing.
