@@ -12,7 +12,7 @@
     programs.firefox.enable = true;
 
     home.packages = [
-        pkgs.protonvpn-gui
+        pkgs.proton-vpn
         pkgs.qdirstat
     ];
 }

@@ -14,13 +14,17 @@ in
   nixpkgs.config.allowUnfreePredicate = (_: true);
 
   imports = [
+    ../../modules/vars-options.nix
     ../../modules/default-apps.nix
-    ../../aliases/bash-aliases-desktop.nix
+    ../../aliases/bash-aliases-general.nix
     ../../modules/languages/japanese.nix
     ../../modules/terminal/cli-tools/media-download.nix
     ../../modules/gaming/gaming.nix
     ../../modules/hardware/desktop-hardware.nix
   ];
+
+  # Sets the update channel for my bash script aliases
+  vars-options.updateStream = "desktop";
 
   home.stateVersion = "26.05"; # Please read the comment before changing.
 

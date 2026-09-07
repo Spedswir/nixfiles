@@ -5,11 +5,13 @@
         fastfetch.enable = true;
         git = {
             enable = true;
-            userName = "Spedswir";
-            userEmail = "spedswir@protonmail.com";
-            extraConfig = {
+            settings = {
+                user = {
+                    name = "Spedswir";
+                    email = "spedswir@protonmail.com";
+                };
+
                 init.defaultBranch = "main";
-                # safe.directory = "/etc/nixos"
             };
         };
     };
