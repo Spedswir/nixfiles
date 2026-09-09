@@ -6,14 +6,16 @@
       ./terminal/kitty.nix
       ./productivity/communications.nix
       ./productivity/multimedia.nix
+      ./productivity/documents.nix
     ];
 
     programs.brave.enable = true;
     programs.firefox.enable = true;
 
-    home.packages = [
-        pkgs.proton-vpn
-        pkgs.qdirstat
-        pkgs.nix-search-tv
+    home.packages = with pkgs; [
+        proton-vpn
+        qdirstat
+        nix-search-tv
+        qbittorrent
     ];
 }

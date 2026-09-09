@@ -14,6 +14,8 @@ in
     ../../modules/nixos/bluetooth.nix
   ];
 
+  services.hardware.openlinkhub.enable = true;
+
   # Use the GRUB 2 boot loader.
   boot.loader.grub.enable = true;
   boot.loader.grub.device = "/dev/vda";
@@ -51,6 +53,7 @@ in
   # Enable the KDE Plasma Desktop Environment.
   services.displayManager.sddm.enable = true;
   services.desktopManager.plasma6.enable = true;
+  security.pam.services.sddm.enableKwallet = true;
 
   hardware.graphics.enable = true;
   # Enable these if nvidia GPU is present

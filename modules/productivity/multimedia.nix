@@ -3,8 +3,9 @@
 {
     programs.freetube.enable = true;
 
-    home.packages = [
-        pkgs.feishin
-        pkgs.haruna
+    home.packages = with pkgs; [
+        feishin
+        haruna
+        picard
     ];
 }

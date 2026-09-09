@@ -18,7 +18,8 @@ in
       ../../aliases/bash-aliases-laptop.nix
       ../../modules/languages/japanese.nix
       ../../modules/terminal/cli-tools/media-download.nix
-      ../../modules/gaming/gaming.nix
+      ../../modules/gaming/game-launchers.nix
+      ../../modules/gaming/games.nix
   ];
 
   home.stateVersion = "26.05"; # Please read the comment before changing.

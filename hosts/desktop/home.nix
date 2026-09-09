@@ -18,7 +18,8 @@ in
     ../../aliases/bash-aliases-desktop.nix
     ../../modules/languages/japanese.nix
     ../../modules/terminal/cli-tools/media-download.nix
-    ../../modules/gaming/gaming.nix
+    ../../modules/gaming/game-launchers.nix
+    ../../modules/gaming/games.nix
     ../../modules/hardware/desktop-hardware.nix
     ../../modules/creative/add-all-creative.nix
   ];

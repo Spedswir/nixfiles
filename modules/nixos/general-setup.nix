@@ -8,6 +8,7 @@
             noto-fonts-cjk
             noto-fonts-emoji
             nerdfonts
+            corefonts
 
             # For Japanese if needed
             ipafont

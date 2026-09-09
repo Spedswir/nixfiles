@@ -19,6 +19,7 @@ in
         background_blur = 25;
         background_image = "${vars.homeDir}/kitty.jpg";
         background_tint = 0.3;
+        confirm_os_window_close = 0;
       };
     };
     starship = {
