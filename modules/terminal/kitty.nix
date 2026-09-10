@@ -18,6 +18,7 @@ in
         background_opacity = 0.9;
         background_blur = 25;
         background_image = "${vars.homeDir}/kitty.jpg";
+        background_image_layout = "cscaled";
         background_tint = 0.3;
         confirm_os_window_close = 0;
       };
