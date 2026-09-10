@@ -15,13 +15,21 @@ in
   ];
 
   services.hardware.openlinkhub.enable = true;
-
+    
   # Use the GRUB 2 boot loader.
-  boot.loader.grub.enable = true;
-  boot.loader.grub.device = "/dev/vda";
-  boot.loader.grub.useOSProber = true;
-  # Use provided UUIDs instead of blkid probing (required for btrfs subvolumes)
-  boot.loader.grub.fsIdentifier = "provided";
+  boot.loader = {
+      systemd-boot.enable = false;
+      grub = {
+          enable = true;
+          efiSupport = true;
+          device = "nodev";
+          useOSProber = true;
+          # Use provided UUIDs instead of blkid probing (required for btrfs subvolumes)
+          fsIdentifier = "provided";
+      };
+
+      efi.canTouchEfiVariables = true;
+  };
 
   # Enable networking
   networking.networkmanager.enable = true;
