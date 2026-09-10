@@ -14,6 +14,13 @@ in
     ../../modules/nixos/bluetooth.nix
   ];
 
+  # Add second driver
+  fileSystems."/mnt/second_drive" = {
+    device = "/dev/disk/by-uuid/639776cb-783c-4df6-aef8-7f76719380f0";
+    fsType = "btrfs";
+    options = ["rw"];
+  };
+
   services.hardware.openlinkhub.enable = true;
     
   # Use the GRUB 2 boot loader.
@@ -64,10 +71,15 @@ in
   security.pam.services.sddm.enableKwallet = true;
 
   hardware.graphics.enable = true;
+  hardware.graphics.enable32Bit = true;
+  programs.steam.enable = true;
+
   # Enable these if nvidia GPU is present
   services.xserver.videoDrivers = [ "nvidia" ];
   hardware.nvidia.modesetting.enable = true;
   hardware.nvidia.open = false; # False uses the proprietary driver.
+
+  hardware.logitech.wireless.enable = true;
 
   # Configure keymap in X11
   services.xserver.xkb = {
