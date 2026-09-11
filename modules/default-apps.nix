@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, pkgs, flake-inputs, ... }:
 
 {
     imports =
@@ -16,6 +16,6 @@
         qdirstat
         nix-search-tv
         qbittorrent
-        librewolf
+        librewolf-bin
     ];
 }
