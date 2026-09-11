@@ -43,6 +43,18 @@ in
   networking.hostName = "${vars.username}-desktop-vm"; # Define your hostname.
   networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
+  networking.firewall = {
+    enable = true;
+
+    allowedTCPPorts = [
+      8000
+    ];
+
+    allowedUDPPorts = [
+      8000
+    ];
+  };
+
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
   time.timeZone = "Australia/Perth";

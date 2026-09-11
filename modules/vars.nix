@@ -5,4 +5,5 @@
     groupId = 100;
     groupId-string = "100";
     homeDir = "/home/spedswir";
+    nixConfDir = "/nix-conf";
 }
