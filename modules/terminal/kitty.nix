@@ -21,6 +21,7 @@ in
         background_image_layout = "cscaled";
         background_tint = 0.3;
         confirm_os_window_close = 0;
+        allow_remote_control = "yes";
       };
     };
     starship = {
