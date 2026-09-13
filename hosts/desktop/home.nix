@@ -20,6 +20,7 @@ in
     ../../modules/terminal/cli-tools/media-download.nix
     ../../modules/gaming/game-launchers.nix
     ../../modules/gaming/games.nix
+    ../../modules/gaming/games-peripherals.nix
     ../../modules/hardware/desktop-hardware.nix
     ../../modules/creative/add-all-creative.nix
     ../../modules/creative/ai.nix
