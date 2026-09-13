@@ -22,6 +22,10 @@ in
   };
 
   services.hardware.openlinkhub.enable = true;
+  programs.steam = {
+      enable = true;
+      protontricks.enable = true;
+  };
     
   # Use the GRUB 2 boot loader.
   boot.loader = {
@@ -80,10 +84,10 @@ in
   # Enable the KDE Plasma Desktop Environment.
   services.displayManager.sddm.enable = true;
   services.desktopManager.plasma6.enable = true;
-  security.pam.services.${userSettings.username} = {
+  security.pam.services.${vars.username} = {
     kwallet = {
       enable = true;
-      package = pkgs.dkdePackages.kwallet-pam;
+      package = pkgs.kdePackages.kwallet-pam;
     };
   };
 

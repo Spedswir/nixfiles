@@ -9,6 +9,5 @@
         faugus-launcher
         heroic
         protonplus
-        steam
     ];
 }

@@ -19,6 +19,7 @@ in
       ../../modules/languages/japanese.nix
       ../../modules/terminal/cli-tools/media-download.nix
       ../../modules/gaming/game-launchers.nix
+      ../../modules/gaming/steam.nix
       ../../modules/gaming/games.nix
   ];
 
