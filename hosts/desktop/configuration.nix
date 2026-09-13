@@ -80,7 +80,12 @@ in
   # Enable the KDE Plasma Desktop Environment.
   services.displayManager.sddm.enable = true;
   services.desktopManager.plasma6.enable = true;
-  security.pam.services.sddm.enableKwallet = true;
+  security.pam.services.${userSettings.username} = {
+    kwallet = {
+      enable = true;
+      package = pkgs.dkdePackages.kwallet-pam;
+    };
+  };
 
   hardware.graphics.enable = true;
   hardware.graphics.enable32Bit = true;
