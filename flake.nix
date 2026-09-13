@@ -41,6 +41,13 @@
           inputs.home-manager.nixosModules.default
         ];
       };
+      gaming-tv = nixpkgs.lib.nixosSystem {
+        system = "x86_64-linux";
+        modules = [
+          ./hosts/gaming-tv/configuration.nix
+          inputs.home-manager.nixosModules.default
+        ];
+      };
     };
   };
 }

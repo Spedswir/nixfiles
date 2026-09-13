@@ -14,26 +14,24 @@ in
   nixpkgs.config.allowUnfreePredicate = (_: true);
 
   imports = [
-    ../../modules/default-apps.nix
-    ../../aliases/bash-aliases-desktop.nix
-    ../../modules/languages/japanese.nix
-    ../../modules/terminal/cli-tools/media-download.nix
-    ../../modules/gaming/game-launchers.nix
-    ../../modules/gaming/games.nix
-    ../../modules/gaming/games-peripherals.nix
-    ../../modules/hardware/desktop-hardware.nix
-    ../../modules/creative/add-all-creative.nix
-    ../../modules/creative/ai.nix
+      ../../modules/default-apps.nix
+      ../../aliases/bash-aliases-gaming-tv.nix
+      ../../modules/languages/japanese.nix
+      ../../modules/terminal/cli-tools/media-download.nix
+      ../../modules/gaming/game-launchers.nix
+      ../../modules/gaming/games.nix
   ];
 
   home.stateVersion = "26.05"; # Please read the comment before changing.
 
   home.packages = [
+
   ];
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
   # plain files is through 'home.file'.
   home.file = {
+
   };
 
   home.sessionVariables = {
