@@ -11,6 +11,7 @@ in
       ../../modules/nixos/users.nix
       ../../modules/nixos/gaming.nix
       ../../modules/nixos/bluetooth.nix
+      ../../modules/nixos/proton-drive.nix
     ];
 
   # Use the GRUB 2 boot loader.
@@ -91,7 +92,7 @@ in
   services.libinput.enable = true;
 
   services.displayManager = {
-    autoLogin.enable = true;
+    autoLogin.enable = false;
     autoLogin.user = "${vars.username}";
   };
 

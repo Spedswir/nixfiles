@@ -30,5 +30,6 @@
         qbittorrent
         librewolf-bin
         gnome-calculator
+        pciutils # For diagnostics, includes lspci
     ];
 }

@@ -12,6 +12,7 @@ in
     ../../modules/nixos/users.nix
     ../../modules/nixos/gaming.nix
     ../../modules/nixos/bluetooth.nix
+    ../../modules/nixos/proton-drive.nix
   ];
 
   # Add second driver
@@ -22,10 +23,6 @@ in
   };
 
   services.hardware.openlinkhub.enable = true;
-  programs.steam = {
-      enable = true;
-      protontricks.enable = true;
-  };
     
   # Use the GRUB 2 boot loader.
   boot.loader = {
@@ -42,22 +39,38 @@ in
       efi.canTouchEfiVariables = true;
   };
 
+  nixpkgs.config.permittedInsecurePackages = [
+    "hakuneko-6.1.7"
+  ];
+
   # Enable networking
-  networking.networkmanager.enable = true;
-  networking.hostName = "${vars.username}-desktop-vm"; # Define your hostname.
-  networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
+  networking = {
+    networkmanager = {
+      enable = true;
 
-  networking.firewall = {
-    enable = true;
+      wifi.powersave = false;
+    };
 
-    allowedTCPPorts = [
-      8000
-    ];
+    hostName = "${vars.username}-desktop-vm";
+    wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
-    allowedUDPPorts = [
-      8000
-    ];
+    firewall = {
+      enable = true;
+
+      allowedTCPPorts = [
+        8000
+      ];
+
+      allowedUDPPorts = [
+        8000
+      ];
+    };
   };
+
+  # Work around MediaTek MT7921/MT7922 PCIe power-management issues.
+  boot.extraModprobeConfig = ''
+    options mt7921e disable_aspm=1
+  '';
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
@@ -84,16 +97,17 @@ in
   # Enable the KDE Plasma Desktop Environment.
   services.displayManager.sddm.enable = true;
   services.desktopManager.plasma6.enable = true;
-  security.pam.services.${vars.username} = {
-    kwallet = {
-      enable = true;
-      package = pkgs.kdePackages.kwallet-pam;
-    };
+  security.pam.services.sddm.kwallet = {
+    enable = true;
+    package = pkgs.kdePackages.kwallet-pam;
   };
 
   hardware.graphics.enable = true;
   hardware.graphics.enable32Bit = true;
-  programs.steam.enable = true;
+  programs.steam = {
+    enable = true;
+    protontricks.enable = true;
+  };
 
   # Enable these if nvidia GPU is present
   services.xserver.videoDrivers = [ "nvidia" ];
@@ -125,7 +139,7 @@ in
   services.libinput.enable = true;
 
   services.displayManager = {
-    autoLogin.enable = true;
+    autoLogin.enable = false;
     autoLogin.user = "${vars.username}";
   };
 

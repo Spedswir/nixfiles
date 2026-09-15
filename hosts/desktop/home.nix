@@ -24,6 +24,7 @@ in
     ../../modules/hardware/desktop-hardware.nix
     ../../modules/creative/add-all-creative.nix
     ../../modules/creative/ai.nix
+    #../../modules/productivity/local-backup.nix
   ];
 
   home.stateVersion = "26.05"; # Please read the comment before changing.
