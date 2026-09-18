@@ -12,6 +12,9 @@ in
       ../../modules/nixos/gaming.nix
       ../../modules/nixos/bluetooth.nix
       ../../modules/nixos/proton-drive.nix
+      ../../modules/nixos/de/kde.nix
+      ../../modules/nixos/aus-locale.nix
+      ../../modules/nixos/grub.nix
     ];
 
   # Use the GRUB 2 boot loader.
@@ -25,36 +28,15 @@ in
   boot.loader.grub.fsIdentifier = "provided";
 
   # Enable networking
-  networking.networkmanager.enable = true;
-  networking.hostName = "${vars.username}-laptop"; # Define your hostname.
-  networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
+  networking = {
+    hostName = "${vars.username}-laptop";
+  };
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
-
-  time.timeZone = "Australia/Perth";
-
-  i18n.defaultLocale = "en_AU.UTF-8";
-
-  i18n.extraLocaleSettings = {
-    LC_ADDRESS = "en_AU.UTF-8";
-    LC_IDENTIFICATION = "en_AU.UTF-8";
-    LC_MEASUREMENT = "en_AU.UTF-8";
-    LC_MONETARY = "en_AU.UTF-8";
-    LC_NAME = "en_AU.UTF-8";
-    LC_NUMERIC = "en_AU.UTF-8";
-    LC_PAPER = "en_AU.UTF-8";
-    LC_TELEPHONE = "en_AU.UTF-8";
-    LC_TIME = "en_AU.UTF-8";
-  };
 
   # Enable the X11 windowing system.
   # You can disable this if you're only using the Wayland session.
   services.xserver.enable = true;
-
-  # Enable the KDE Plasma Desktop Environment.
-  services.displayManager.sddm.enable = true;
-  services.desktopManager.plasma6.enable = true;
-  security.pam.services.sddm.enableKwallet = true;
 
   hardware.graphics.enable = true;
   # Enable these if nvidia GPU is present
@@ -77,16 +59,6 @@ in
 
   # Enable CUPS to print documents.
   services.printing.enable = true;
-
-  # Enable sound with pipewire.
-  services.pulseaudio.enable = false;
-  security.rtkit.enable = true;
-  services.pipewire = {
-    enable = true;
-    alsa.enable = true;
-    alsa.support32Bit = true;
-    pulse.enable = true;
-  };
 
   # Enable touchpad support (enabled default in most desktopManager).
   services.libinput.enable = true;

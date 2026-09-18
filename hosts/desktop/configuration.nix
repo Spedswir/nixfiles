@@ -12,7 +12,10 @@ in
     ../../modules/nixos/users.nix
     ../../modules/nixos/gaming.nix
     ../../modules/nixos/bluetooth.nix
-    ../../modules/nixos/proton-drive.nix
+    #../../modules/nixos/proton-drive.nix
+    ../../modules/nixos/de/kde.nix
+    ../../modules/nixos/aus-locale.nix
+    ../../modules/nixos/grub.nix
   ];
 
   # Add second driver
@@ -23,36 +26,10 @@ in
   };
 
   services.hardware.openlinkhub.enable = true;
-    
-  # Use the GRUB 2 boot loader.
-  boot.loader = {
-      systemd-boot.enable = false;
-      grub = {
-          enable = true;
-          efiSupport = true;
-          device = "nodev";
-          useOSProber = true;
-          # Use provided UUIDs instead of blkid probing (required for btrfs subvolumes)
-          fsIdentifier = "provided";
-      };
-
-      efi.canTouchEfiVariables = true;
-  };
-
-  nixpkgs.config.permittedInsecurePackages = [
-    "hakuneko-6.1.7"
-  ];
 
   # Enable networking
   networking = {
-    networkmanager = {
-      enable = true;
-
-      wifi.powersave = false;
-    };
-
-    hostName = "${vars.username}-desktop-vm";
-    wireless.enable = true;  # Enables wireless support via wpa_supplicant.
+    hostName = "${vars.username}-desktop";
 
     firewall = {
       enable = true;
@@ -67,40 +44,13 @@ in
     };
   };
 
+
   # Work around MediaTek MT7921/MT7922 PCIe power-management issues.
   boot.extraModprobeConfig = ''
     options mt7921e disable_aspm=1
   '';
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
-
-  time.timeZone = "Australia/Perth";
-
-  i18n.defaultLocale = "en_AU.UTF-8";
-
-  i18n.extraLocaleSettings = {
-    LC_ADDRESS = "en_AU.UTF-8";
-    LC_IDENTIFICATION = "en_AU.UTF-8";
-    LC_MEASUREMENT = "en_AU.UTF-8";
-    LC_MONETARY = "en_AU.UTF-8";
-    LC_NAME = "en_AU.UTF-8";
-    LC_NUMERIC = "en_AU.UTF-8";
-    LC_PAPER = "en_AU.UTF-8";
-    LC_TELEPHONE = "en_AU.UTF-8";
-    LC_TIME = "en_AU.UTF-8";
-  };
-
-  # Enable the X11 windowing system.
-  # You can disable this if you're only using the Wayland session.
-  services.xserver.enable = true;
-
-  # Enable the KDE Plasma Desktop Environment.
-  services.displayManager.sddm.enable = true;
-  services.desktopManager.plasma6.enable = true;
-  security.pam.services.sddm.kwallet = {
-    enable = true;
-    package = pkgs.kdePackages.kwallet-pam;
-  };
 
   hardware.graphics.enable = true;
   hardware.graphics.enable32Bit = true;
@@ -124,16 +74,6 @@ in
 
   # Enable CUPS to print documents.
   services.printing.enable = true;
-
-  # Enable sound with pipewire.
-  services.pulseaudio.enable = false;
-  security.rtkit.enable = true;
-  services.pipewire = {
-    enable = true;
-    alsa.enable = true;
-    alsa.support32Bit = true;
-    pulse.enable = true;
-  };
 
   # Enable touchpad support (enabled default in most desktopManager).
   services.libinput.enable = true;
