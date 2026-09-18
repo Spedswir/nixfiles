@@ -1,8 +1,8 @@
 { config, pkgs, ... }:
 
 {
-    home.packages = [
-        pkgs.kdePackages.kdenlive
+    home.packages = with pkgs; [
+        kdePackages.kdenlive
     ];
 
     programs.obs-studio = {

@@ -1,8 +1,8 @@
 { config, pkgs, ... }:
 
 {
-    home.packages = [
-        pkgs.lycheeslicer
-        pkgs.prusa-slicer
+    home.packages = with pkgs; [
+        lycheeslicer
+        prusa-slicer
     ];
 }

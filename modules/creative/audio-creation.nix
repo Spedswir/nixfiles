@@ -1,8 +1,8 @@
 { config, pkgs, ... }:
 
 {
-    home.packages = [
-        pkgs.audacity
-        pkgs.lmms
+    home.packages = with pkgs; [
+        audacity
+        lmms
     ];
 }

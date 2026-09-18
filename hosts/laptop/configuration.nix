@@ -17,16 +17,6 @@ in
       ../../modules/nixos/grub.nix
     ];
 
-  # Use the GRUB 2 boot loader.
-  boot.loader.systemd-boot.enable = false;
-  boot.loader.grub.enable = true;
-  boot.loader.grub.efiSupport = true;
-  boot.loader.grub.device = "nodev";
-  boot.loader.grub.useOSProber = true;
-  boot.loader.efi.canTouchEfiVariables = true;
-  # Use provided UUIDs instead of blkid probing (required for btrfs subvolumes)
-  boot.loader.grub.fsIdentifier = "provided";
-
   # Enable networking
   networking = {
     hostName = "${vars.username}-laptop";
@@ -49,12 +39,6 @@ in
     # intelBusId = "";
     # nvidiaBusId = "";
     # amdgpuBusId = ""; # If you have an AMD iGPU
-  };
-
-  # Configure keymap in X11
-  services.xserver.xkb = {
-    layout = "au";
-    variant = "";
   };
 
   # Enable CUPS to print documents.

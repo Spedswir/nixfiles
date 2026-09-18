@@ -1,8 +1,8 @@
 { config, pkgs, ... }:
 
 {
-    home.packages = [
-        pkgs.gimp
-        pkgs.krita
+    home.packages = with pkgs; [
+        gimp
+        krita
     ];
 }

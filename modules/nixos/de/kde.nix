@@ -1,7 +1,12 @@
 { config, pkgs, ... }:
 
 {
-    # Enable the X11 windowing system.
+  environment.systemPackages = with pkgs; [
+    kdePackages.fcitx5-configtool
+    kdePackages.merkuro
+  ];
+
+  # Enable the X11 windowing system.
   # You can disable this if you're only using the Wayland session.
   services.xserver.enable = true;
 
