@@ -1,6 +1,5 @@
-{ config, fetchurl, lib, ... }:
+{ appimageTools, fetchurl, lib, ...}:
 
-# https://github.com/ctknightdev/nixos/blob/main/pkgs/amethyst.nix
 let
   version = "1.2.1";
   pname = "AmethystModManager";
@@ -11,9 +10,9 @@ let
     hash = "sha256-J7cLxtpJmc8W4XCTGcnDU9T33Cc836mbRnepYCNO/8I=";
   };
 
-  appimageContents = config.appimageTools.extract { inherit pname version src; };
+  appimageContents = appimageTools.extract { inherit pname version src; };
 in
-config.appimageTools.wrapType2 {
+appimageTools.wrapType2 {
   inherit pname version src;
 
   extraInstallCommands = ''

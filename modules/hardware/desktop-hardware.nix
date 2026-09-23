@@ -1,9 +1,12 @@
 { config, pkgs, ... }:
 
 {
+    imports = [
+        ./logitech.nix
+    ];
+
     home.packages = [
         pkgs.goxlr-utility
-        pkgs.solaar
         pkgs.streamdeck-ui
     ];
 }

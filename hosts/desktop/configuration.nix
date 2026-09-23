@@ -7,7 +7,6 @@ in
   imports = [
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
-
     ../../modules/nixos/network-drives.nix
     ../../modules/nixos/users.nix
     ../../modules/nixos/gaming.nix
@@ -16,6 +15,7 @@ in
     ../../modules/nixos/de/kde.nix
     ../../modules/nixos/aus-locale.nix
     ../../modules/nixos/grub.nix
+    ../../modules/productivity/local-backup.nix
   ];
 
   # Add second driver
@@ -51,13 +51,6 @@ in
   '';
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
-
-  hardware.graphics.enable = true;
-  hardware.graphics.enable32Bit = true;
-  programs.steam = {
-    enable = true;
-    protontricks.enable = true;
-  };
 
   # Enable these if nvidia GPU is present
   services.xserver.videoDrivers = [ "nvidia" ];

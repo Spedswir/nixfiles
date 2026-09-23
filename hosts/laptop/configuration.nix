@@ -11,10 +11,11 @@ in
       ../../modules/nixos/users.nix
       ../../modules/nixos/gaming.nix
       ../../modules/nixos/bluetooth.nix
-      ../../modules/nixos/proton-drive.nix
+      #../../modules/nixos/proton-drive.nix
       ../../modules/nixos/de/kde.nix
       ../../modules/nixos/aus-locale.nix
       ../../modules/nixos/grub.nix
+      ../../modules/productivity/local-backup.nix
     ];
 
   # Enable networking
