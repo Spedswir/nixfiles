@@ -1,20 +1,33 @@
-{ config, pkgs, ... }:
+{ config, pkgs, secrets, ... }:
 
 {
-  boot.kernelModules = [ fuse ];
-  security.wrappers.fuse = [ fusermount ];
-  users.users.yourUser.extraGroups = [ fuse ];
+  systemd = tmpfiles.rules = [ "d /mnt/protondrive 0755 root root" ];
+  environment.etc."rclone-proton.conf".text = '' [remote] type = protondrive username = ${secrets.proton.email} password = ${secrets.proton.pass}'';
 
-  environment.systemPackages = with pkgs; [
-    rclone
-  ];
+  # Mount proton drive to /mnt/protondrive
+  serviceConfig = {
+    Type = "simple";
+    Restart = "on-failure";
+    RestartSec = "15s";
 
-  # You need to manually run these commands to configure rclone
-  # Choose new remote, type protondrive, follow prompts for OAuth.
-  # rclone config
+    StateDirectory = "rclone-USER"; # Change to rclone-YOURUSER for perms?
 
-  # rclone ls protondrive:
-  # rclone copy mnt/remote/proton protondrive:Backup
+    ExecStartPre = ''
+      /bin/sh -c 'if [ ! -f "/var/lib/rclone-protondrive/rclone.conf" ]; then ${pkgs.coreutils}/bin/cp /etc/rclone-proton.conf /var/lib/rclone-protondrive/rclone.conf; fi'
+    '';
+
+    ExecStart = ''
+      ${pkgs.rclone}/bin/rclone mount \
+        --config=/var/lib/rclone-protondrive/rclone.conf \
+        --allow-other \
+        --vfs-cache-mode full \
+        remote:/ /mnt/protondrive
+    '';
+
+    ExecStop = "${pkgs.fuse}/bin/fusermount -u /mnt/protondrive";
+  };
+
+  wantedBy = [ "multi-user.target" ];
 }
 
 

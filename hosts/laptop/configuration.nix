@@ -16,6 +16,7 @@ in
       ../../modules/nixos/aus-locale.nix
       ../../modules/nixos/grub.nix
       ../../modules/productivity/local-backup.nix
+      ../../modules/productivity/cli-gui-tools.nix
     ];
 
   # Enable networking
