@@ -12,6 +12,10 @@
                 };
 
                 init.defaultBranch = "main";
+                alias = {
+                    ci = "commit -m";
+                    sync = "!git pull --rebase && git push";
+                };
             };
         };
     };
