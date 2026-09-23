@@ -7,6 +7,7 @@
       ./productivity/communications.nix
       ./productivity/multimedia.nix
       ./productivity/documents.nix
+      ./creative/media-editing.nix
     ];
 
     # Install Brave and ensure that specific extensions are installed.

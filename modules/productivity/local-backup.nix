@@ -2,6 +2,6 @@
 
 {
     home.packages = with pkgs; [
-        hakuneko
+        parabolic # gui frontend for yt-dlp
     ];
 }
