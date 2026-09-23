@@ -2,7 +2,7 @@
 
 {
     home.packages = with pkgs; [
-        gitkraken
+        github-desktop
         parabolic # gui frontend for yt-dlp
     ];
 }

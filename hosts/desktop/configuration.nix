@@ -16,6 +16,7 @@ in
     ../../modules/nixos/aus-locale.nix
     ../../modules/nixos/grub.nix
     ../../modules/productivity/local-backup.nix
+    ../../modules/terminal/cli-tools/ansible.nix
   ];
 
   # Add second driver
