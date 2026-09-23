@@ -1,14 +1,18 @@
 { config, pkgs, ... }:
 
+let
+    gitUpdate = "../../scripts/gitpush.sh"
+    vars = import ../../modules/vars.nix;
+in
 {
-    systemd.timers."hello-world" = {
+    systemd.timers."git-update-obsidian" = {
         wantedBy = [
             "timers.target"
         ];
         timerConfig = {
-            OnBootSec = "5m";
-            OnUnitActiveSec = "5m";
-            Unit = "hello-world.service";
+            OnBootSec = "2m";
+            OnUnitActiveSec = "45m";
+            Unit = "${gitUpdate} \"${vars.gitRepoDir}/obsidian-archives\"";
         };
     };
 }

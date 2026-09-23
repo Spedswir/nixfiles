@@ -5,5 +5,6 @@
     groupId = 100;
     groupId-string = "100";
     homeDir = "/home/spedswir";
-    nixConfDir = "/nix-conf";
+    nixConfDir = "/Documents/nix-conf";
+    gitRepoDir = "/Documents/git-repos";
 }
