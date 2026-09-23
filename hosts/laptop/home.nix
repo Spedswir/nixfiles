@@ -20,7 +20,6 @@ in
       ../../modules/terminal/cli-tools/media-download.nix
       ../../modules/gaming/game-launchers.nix
       ../../modules/gaming/mod-managers.nix
-      ../../modules/productivity/local-backup.nix
       ../../modules/hardware/logitech.nix
   ];
 
