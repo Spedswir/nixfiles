@@ -6,6 +6,14 @@ let
     automount_opts = "x-systemd.automount,nofail,uid=${vars.userId-string},gid=${vars.groupId-string},file_mode=0777,dir_mode=0777,x-gvfs-show,credentials=/etc/.smbcred";
 in
 {
+    environment.etc.".smbcred" = {
+        text = ''
+            username=
+            password=
+        '';
+        mode = "0775";
+    };
+
     systemd.tmpfiles.rules = [
         "d /mnt/server 0777 ${vars.userId-string} ${vars.groupId-string}"
         "d /mnt/server/Multimedia 0777 ${vars.userId-string} ${vars.groupId-string}"

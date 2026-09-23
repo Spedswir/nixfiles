@@ -20,6 +20,11 @@
       url = "github:skelettor/nix-openlinkhub";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    proton-drive = {
+      url = "github:tommasie/nix-proton-drive-cli";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = { self, nixpkgs, ... }@inputs: {

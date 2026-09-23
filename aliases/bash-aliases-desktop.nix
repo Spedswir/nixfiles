@@ -25,8 +25,8 @@ in
         st-start = "sillytavern --browserLaunchEnabled false";
 
         # Matrix updates
-        matrix-update-git = "cd ~/git-repos/matrix-docker-ansible-deploy/; git reset --hard; git pull --rebase; sudo ansible-playbook -i inventory/hosts setup.yml --tags=ensure-matrix-users-created";
-        matrix-update-server = "cd ~/git-repos/matrix-docker-ansible-deploy/; sudo ansible-playbook -i inventory/hosts setup.yml --tags=setup-all,ensure-matrix-users-created,start --ask-pass";
+        matrix-update-git = "cd ~/Documents/git-repos/matrix-docker-ansible-deploy/; git reset --hard; git pull --rebase; sudo ansible-playbook -i inventory/hosts setup.yml --tags=ensure-matrix-users-created";
+        matrix-update-server = "cd ~/Documents/git-repos/matrix-docker-ansible-deploy/; sudo ansible-playbook -i inventory/hosts setup.yml --tags=setup-all,ensure-matrix-users-created,start --ask-pass";
       };
     };
   };
