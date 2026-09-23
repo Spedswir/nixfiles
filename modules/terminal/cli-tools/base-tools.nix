@@ -13,7 +13,7 @@
 
                 init.defaultBranch = "main";
                 alias = {
-                    ci = "commit -m";
+                    ci = "git commit -m";
                     sync = "git pull --rebase && git push";
                 };
             };

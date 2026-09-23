@@ -15,7 +15,6 @@ in
       ../../modules/nixos/de/kde.nix
       ../../modules/nixos/aus-locale.nix
       ../../modules/nixos/grub.nix
-      ../../modules/productivity/cli-gui-tools.nix
     ];
 
   # Enable networking

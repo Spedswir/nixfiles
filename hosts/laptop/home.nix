@@ -21,6 +21,7 @@ in
       ../../modules/gaming/game-launchers.nix
       ../../modules/gaming/mod-managers.nix
       ../../modules/hardware/logitech.nix
+      ../../modules/productivity/cli-gui-tools.nix
   ];
 
   home.stateVersion = "26.05"; # Please read the comment before changing.

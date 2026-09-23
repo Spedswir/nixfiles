@@ -15,9 +15,6 @@ in
     ../../modules/nixos/de/kde.nix
     ../../modules/nixos/aus-locale.nix
     ../../modules/nixos/grub.nix
-    ../../modules/productivity/cli-gui-tools.nix
-    ../../modules/terminal/cli-tools/ansible.nix
-    ../../scripts/gitpush.sh
   ];
 
   # Add second driver
