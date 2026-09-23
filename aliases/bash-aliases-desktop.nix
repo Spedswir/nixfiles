@@ -23,6 +23,10 @@ in
         ai-start = "${vars.homeDir}${vars.nixConfDir}/scripts/run_ai.sh";
         kcpp-start = "koboldcpp --config ${vars.homeDir}/Models/default.kcpps";
         st-start = "sillytavern --browserLaunchEnabled false";
+
+        # Matrix updates
+        matrix-update-git = "cd /home/spedswir/Ansible/matrix-docker-ansible-deploy/; git pull --rebase; just roles";
+        matrix-update-server = "cd /home/spedswir/Ansible/matrix-docker-ansible-deploy/; sudo ansible-playbook -i inventory/hosts setup.yml --tags=setup-all,ensure-matrix-users-created,start --ask-pass";
       };
     };
   };
