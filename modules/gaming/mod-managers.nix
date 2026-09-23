@@ -2,7 +2,7 @@
 
 {
     imports = [
-        ./amethyst.nix # Amethyst Mod Manager
+        # ./amethyst.nix # Amethyst Mod Manager
     ];
 
     home.packages = with pkgs; [
