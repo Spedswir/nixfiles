@@ -1,7 +1,7 @@
 { config, pkgs, ... }:
 
 let
-    gitUpdate = "../../scripts/gitpush.sh"
+    gitUpdate = "../../scripts/gitpush.sh";
     vars = import ../../modules/vars.nix;
 in
 {
@@ -13,6 +13,17 @@ in
             OnBootSec = "2m";
             OnUnitActiveSec = "45m";
             Unit = "${gitUpdate} \"${vars.gitRepoDir}/obsidian-archives\"";
+        };
+    };
+
+    systemd.timers."git-update-other-files" = {
+        wantedBy = [
+            "timers.target"
+        ];
+        timerConfig = {
+            OnBootSec = "2m";
+            OnUnitActiveSec = "45m";
+            Unit = "${gitUpdate} \"${vars.gitRepoDir}/OtherFiles\"";
         };
     };
 }

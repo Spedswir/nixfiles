@@ -2,7 +2,7 @@
 
 {
     programs = {
-        # yt-dlp.enable = true;
+        yt-dlp.enable = true;
         gallery-dl.enable = true;
     };
 }

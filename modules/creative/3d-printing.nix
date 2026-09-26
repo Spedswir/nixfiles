@@ -3,6 +3,7 @@
 {
     home.packages = with pkgs; [
         lycheeslicer
-        prusa-slicer
+        # prusa-slicer
+        orca-slicer
     ];
 }

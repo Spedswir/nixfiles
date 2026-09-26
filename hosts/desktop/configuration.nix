@@ -15,6 +15,7 @@ in
     ../../modules/nixos/de/kde.nix
     ../../modules/nixos/aus-locale.nix
     ../../modules/nixos/grub.nix
+    ../../modules/nixos/systemd-timers.nix
   ];
 
   # Add second driver
