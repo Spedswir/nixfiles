@@ -16,10 +16,8 @@ in
   imports = [
       ../../modules/default-apps.nix
       ../../aliases/bash-aliases-gaming-tv.nix
-      ../../modules/languages/japanese.nix
       ../../modules/terminal/cli-tools/media-download.nix
       ../../modules/gaming/game-launchers.nix
-      ../../modules/gaming/steam.nix
       ../../modules/gaming/games.nix
   ];
 
