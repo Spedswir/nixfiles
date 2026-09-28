@@ -18,7 +18,6 @@ in
 
   networking = {
     hostName = "${vars.username}-tv";
-    };
   };
 
 

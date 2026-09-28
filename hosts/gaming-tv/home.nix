@@ -18,7 +18,7 @@ in
       ../../aliases/bash-aliases-gaming-tv.nix
       ../../modules/terminal/cli-tools/media-download.nix
       ../../modules/gaming/game-launchers.nix
-      ../../modules/gaming/games.nix
+      ../../modules/productivity/bigscreen-apps.nix
   ];
 
   home.stateVersion = "26.05"; # Please read the comment before changing.
