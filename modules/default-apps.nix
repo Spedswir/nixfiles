@@ -32,6 +32,6 @@
         librewolf-bin
         gnome-calculator
         pciutils # For diagnostics, includes lspci
-        pdftk
+        kdePackages.isoimagewriter
     ];
 }
