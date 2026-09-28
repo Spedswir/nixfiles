@@ -49,7 +49,7 @@ in
   services.libinput.enable = true;
 
   services.displayManager = {
-    autoLogin.enable = false;
+    autoLogin.enable = true;
     autoLogin.user = "${vars.username}";
   };
 
