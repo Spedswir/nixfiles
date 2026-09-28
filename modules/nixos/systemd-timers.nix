@@ -40,10 +40,10 @@ let
 in
 {
   systemd.services."git-update-obsidian" =
-    mkGitService "${vars.gitRepoDir}/obsidian-archives";
+    mkGitService "${vars.homeDir}${vars.gitRepoDir}/obsidian-archives";
 
   systemd.services."git-update-other-files" =
-    mkGitService "${vars.gitRepoDir}/OtherFiles";
+    mkGitService "${vars.homeDir}${vars.gitRepoDir}/OtherFiles";
 
   systemd.timers."git-update-obsidian" =
     mkGitTimer "git-update-obsidian";

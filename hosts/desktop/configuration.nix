@@ -50,7 +50,11 @@ in
     options mt7921e disable_aspm=1
   '';
 
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  nix.settings = {
+    max-jobs = 3;
+    cores = 14;
+    experimental-features = [ "nix-command" "flakes" ];
+  };
 
   # Enable these if nvidia GPU is present
   services.xserver.videoDrivers = [ "nvidia" ];

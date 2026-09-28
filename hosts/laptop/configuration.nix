@@ -23,7 +23,11 @@ in
     hostName = "${vars.username}-laptop";
   };
 
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  nix.settings = {
+    max-jobs = 2;
+    cores = 8;
+    experimental-features = [ "nix-command" "flakes" ];
+  };
 
   # Enable the X11 windowing system.
   # You can disable this if you're only using the Wayland session.
