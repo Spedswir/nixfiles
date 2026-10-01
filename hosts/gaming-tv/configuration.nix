@@ -14,6 +14,7 @@ in
       ../../modules/nixos/de/kde-bigscreen.nix
       ../../modules/nixos/aus-locale.nix
       ../../modules/nixos/grub.nix
+      ../../modules/nixos/wallpapers-sync.nix
     ];
 
   networking = {

@@ -19,6 +19,7 @@ in
       ../../modules/productivity/bigscreen-apps.nix
       ../../modules/productivity/multimedia.nix
       ../../modules/fonts.nix
+      ../../modules/wallpaper-selector.nix
   ];
 
   programs.onlyoffice.enable = true;

@@ -16,6 +16,7 @@ in
     ../../modules/nixos/grub.nix
     ../../modules/nixos/git-update-timers.nix
     ../../modules/nixos/printers-scanners.nix
+    ../../modules/nixos/wallpapers-sync.nix
   ];
 
   # Add second driver

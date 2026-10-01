@@ -26,6 +26,7 @@ in
     ../../modules/productivity/cli-gui-tools.nix
     ../../modules/terminal/cli-tools/ansible.nix
     ../../modules/fonts.nix
+    ../../modules/wallpaper-selector.nix
     ../../modules/online-accounts/protondrive.nix
   ];
 
