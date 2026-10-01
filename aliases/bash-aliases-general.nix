@@ -18,6 +18,13 @@ in
         # NixOS updates
         nix-conf-pull = "cd ~/nix-conf/; git pull --rebase";
       };
+
+      initExtra = ''
+        # usage: git-commit "message"
+        git-commit() {
+          git add . && git commit -m $1 && git push
+        }
+      '';
     };
   };
 }
