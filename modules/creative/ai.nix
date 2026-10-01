@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ lib, pkgs, ... }:
 
 let
   # Temporary workaround for the CUDA redistributable output-list bug.
