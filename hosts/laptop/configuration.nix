@@ -15,7 +15,8 @@ in
       ../../modules/nixos/de/kde.nix
       ../../modules/nixos/aus-locale.nix
       ../../modules/nixos/grub.nix
-      ../../modules/nixos/systemd-timers.nix
+      ../../modules/nixos/git-update-timers.nix
+      ../../modules/nixos/printers-scanners.nix
     ];
 
   # Enable networking
@@ -45,9 +46,6 @@ in
     # nvidiaBusId = "";
     # amdgpuBusId = ""; # If you have an AMD iGPU
   };
-
-  # Enable CUPS to print documents.
-  services.printing.enable = true;
 
   # Enable touchpad support (enabled default in most desktopManager).
   services.libinput.enable = true;

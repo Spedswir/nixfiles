@@ -15,7 +15,8 @@ in
     ../../modules/nixos/de/kde.nix
     ../../modules/nixos/aus-locale.nix
     ../../modules/nixos/grub.nix
-    ../../modules/nixos/systemd-timers.nix
+    ../../modules/nixos/git-update-timers.nix
+    ../../modules/nixos/printers-scanners.nix
   ];
 
   # Add second driver
@@ -68,9 +69,6 @@ in
     layout = "au";
     variant = "";
   };
-
-  # Enable CUPS to print documents.
-  services.printing.enable = true;
 
   # Enable touchpad support (enabled default in most desktopManager).
   services.libinput.enable = true;
