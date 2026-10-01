@@ -7,11 +7,10 @@ in
   # Home Manager needs a bit of information about you and the paths it should
   # manage.
   home.username = "${vars.username}";
-  home.homeDirectory = "${vars.homeDir}";
+  home.homeDirectory = "/home/${vars.username}";
 
   # Install unfree packages
   nixpkgs.config.allowUnfree = true;
-  nixpkgs.config.allowUnfreePredicate = (_: true);
 
   imports = [
       ../../modules/default-apps.nix
@@ -22,6 +21,8 @@ in
       ../../modules/gaming/mod-managers.nix
       ../../modules/hardware/logitech.nix
       ../../modules/productivity/cli-gui-tools.nix
+      ../../modules/fonts.nix
+      ../../modules/online-accounts/protondrive.nix
   ];
 
   home.stateVersion = "26.05"; # Please read the comment before changing.

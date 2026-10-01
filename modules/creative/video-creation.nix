@@ -9,11 +9,12 @@
         enable = true;
 
         # Nvidia hardware acceleration
-        package = (
-            pkgs.obs-studio.override {
-                cudaSupport = true;
-            }
-        );
+        # ***** OBS's NVENC encoding generally works with the normal cached package on the proprietary driver *****
+        #package = (
+        #    pkgs.obs-studio.override {
+        #        cudaSupport = true;
+        #    }
+        #);
 
         plugins = with pkgs.obs-studio-plugins; [
             wlrobs

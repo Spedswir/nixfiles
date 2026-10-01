@@ -11,7 +11,6 @@ in
     ../../modules/nixos/users.nix
     ../../modules/nixos/gaming.nix
     ../../modules/nixos/bluetooth.nix
-    #../../modules/nixos/proton-drive.nix
     ../../modules/nixos/de/kde.nix
     ../../modules/nixos/aus-locale.nix
     ../../modules/nixos/grub.nix
@@ -60,15 +59,9 @@ in
   # Enable these if nvidia GPU is present
   services.xserver.videoDrivers = [ "nvidia" ];
   hardware.nvidia.modesetting.enable = true;
-  hardware.nvidia.open = false; # False uses the proprietary driver.
+  hardware.nvidia.open = true;
 
   hardware.logitech.wireless.enable = true;
-
-  # Configure keymap in X11
-  services.xserver.xkb = {
-    layout = "au";
-    variant = "";
-  };
 
   # Enable touchpad support (enabled default in most desktopManager).
   services.libinput.enable = true;

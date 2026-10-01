@@ -34,7 +34,7 @@ let
 
   koboldcppCuda = pkgs.writeShellScriptBin "koboldcpp" ''
     export LD_PRELOAD="/run/opengl-driver/lib/libcuda.so.1''${LD_PRELOAD:+:$LD_PRELOAD}"
-    exec ${pkgs.koboldcpp}/bin/koboldcpp "$@"
+    exec ${koboldcppPackage}/bin/koboldcpp "$@"
   '';
 in
 {

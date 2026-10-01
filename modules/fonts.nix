@@ -2,6 +2,6 @@
 
 {
   home.packages = [
-    pkgs.jellyfin-desktop
+    pkgs.nerd-fonts.caskaydia-mono
   ];
 }

@@ -20,12 +20,6 @@ in
     hostName = "${vars.username}-tv";
   };
 
-
-  # Work around MediaTek MT7921/MT7922 PCIe power-management issues.
-  boot.extraModprobeConfig = ''
-    options mt7921e disable_aspm=1
-  '';
-
   nix.settings = {
     max-jobs = 2;
     cores = 2;
@@ -38,12 +32,6 @@ in
   hardware.nvidia.open = false; # False uses the proprietary driver.
 
   hardware.logitech.wireless.enable = true;
-
-  # Configure keymap in X11
-  services.xserver.xkb = {
-    layout = "au";
-    variant = "";
-  };
 
   # Enable touchpad support (enabled default in most desktopManager).
   services.libinput.enable = true;

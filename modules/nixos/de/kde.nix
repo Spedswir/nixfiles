@@ -2,7 +2,6 @@
 
 {
   environment.systemPackages = with pkgs; [
-    kdePackages.fcitx5-configtool
     kdePackages.merkuro
   ];
 
@@ -32,9 +31,6 @@
   networking = {
     networkmanager = {
       enable = true;
-
-      wifi.powersave = false;
     };
-    wireless.enable = true;  # Enables wireless support via wpa_supplicant.
   };
 }

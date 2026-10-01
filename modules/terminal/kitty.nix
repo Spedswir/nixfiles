@@ -17,13 +17,14 @@ in
         # Background options
         background_opacity = 0.9;
         background_blur = 25;
-        background_image = "${vars.homeDir}${vars.nixConfDir}/images/term-bg.png";
+        background_image = "${config.home.homeDirectory}${vars.nixConfDir}/images/term-bg.png";
         background_image_layout = "cscaled";
         background_tint = 0.5;
-        themeFile = "AdventureTime";
         confirm_os_window_close = 0;
         allow_remote_control = "yes";
       };
+
+      themeFile = "AdventureTime";
     };
     starship = {
       enable = true;

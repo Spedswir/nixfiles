@@ -1,18 +1,18 @@
 # Replace the contents of your existing NixOS timer module with this file.
 # Keep it in the same location so these relative paths still resolve.
 # This uses NixOS module syntax, not Home Manager module syntax.
-{ lib, pkgs, ... }:
+{ config, lib, pkgs, ... }:
 
 let
   vars = import ../../modules/vars.nix;
+  homeDir = config.users.users.${vars.username}.home;
   gitUpdate = ../../scripts/gitpush.sh;
-  username = "spedswir";
 
   mkGitService = repo: updateName: {
     description = "Update Git repository: ${updateName}";
     after = [ "graphical-session.target" ];
     partOf = [ "graphical-session.target" ];
-    unitConfig.ConditionUser = username;
+    unitConfig.ConditionUser = "${vars.username}";
 
     path = with pkgs; [ bash git openssh coreutils ];
 
@@ -36,7 +36,7 @@ let
   mkGitTimer = name: {
     wantedBy = [ "graphical-session.target" ];
     partOf = [ "graphical-session.target" ];
-    unitConfig.ConditionUser = username;
+    unitConfig.ConditionUser = "${vars.username}";
 
     timerConfig = {
       # Start two minutes after the timer starts with the desktop session.
@@ -48,10 +48,10 @@ let
 in
 {
   systemd.user.services."git-update-obsidian" =
-    mkGitService "${vars.gitRepoDir}/obsidian-archives" "Obsidian";
+    mkGitService "${homeDir}${vars.gitRepoDir}/obsidian-archives" "Obsidian";
 
   systemd.user.services."git-update-other-files" =
-    mkGitService "${vars.gitRepoDir}/OtherFiles" "OtherFiles";
+    mkGitService "${homeDir}${vars.gitRepoDir}/OtherFiles" "OtherFiles";
 
   systemd.user.timers."git-update-obsidian" =
     mkGitTimer "git-update-obsidian";

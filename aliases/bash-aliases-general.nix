@@ -16,7 +16,7 @@ in
         garbage-all = "sudo nix-collect-garbage";
 
         # NixOS updates
-        nix-conf-pull = "cd ~/nix-conf/; git pull --rebase";
+        nix-conf-pull = "cd ${config.home.homeDirectory}${vars.nixConfDir}; git pull --rebase";
 
         # NixOS full cleanup - This can take a long time
         cleanup = "garbage; nix store optimise";

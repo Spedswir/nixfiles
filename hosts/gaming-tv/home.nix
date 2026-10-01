@@ -7,11 +7,10 @@ in
   # Home Manager needs a bit of information about you and the paths it should
   # manage.
   home.username = "${vars.username}";
-  home.homeDirectory = "${vars.homeDir}";
+  home.homeDirectory = "/home/${vars.username}";
 
   # Install unfree packages
   nixpkgs.config.allowUnfree = true;
-  nixpkgs.config.allowUnfreePredicate = (_: true);
 
   imports = [
       ../../aliases/bash-aliases-gaming-tv.nix
@@ -19,6 +18,7 @@ in
       ../../modules/gaming/game-launchers.nix
       ../../modules/productivity/bigscreen-apps.nix
       ../../modules/productivity/multimedia.nix
+      ../../modules/fonts.nix
   ];
 
   programs.onlyoffice.enable = true;

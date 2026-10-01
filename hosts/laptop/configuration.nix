@@ -11,7 +11,6 @@ in
       ../../modules/nixos/users.nix
       ../../modules/nixos/gaming.nix
       ../../modules/nixos/bluetooth.nix
-      #../../modules/nixos/proton-drive.nix
       ../../modules/nixos/de/kde.nix
       ../../modules/nixos/aus-locale.nix
       ../../modules/nixos/grub.nix
@@ -30,11 +29,6 @@ in
     experimental-features = [ "nix-command" "flakes" ];
   };
 
-  # Enable the X11 windowing system.
-  # You can disable this if you're only using the Wayland session.
-  services.xserver.enable = true;
-
-  hardware.graphics.enable = true;
   # Enable these if nvidia GPU is present
   services.xserver.videoDrivers = [ "nvidia" ];
   hardware.nvidia.modesetting.enable = true;
