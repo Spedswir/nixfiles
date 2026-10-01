@@ -7,7 +7,10 @@ let
 in
 {
     systemd.tmpfiles.rules = [
-        "f /etc/.smbcred 0600 ${vars.userId-string} ${vars.groupId-string} - username=\\npassword=\\n"
+        # Root only. The CIFS mounts run as root, so they can still read it. Edit with: sudoedit /etc/.smbcred
+        "f /etc/.smbcred 0600 root root - username=\\npassword=\\n"
+        # "f" only applies to new files, "z" also fixes the owner/mode of an existing one
+        "z /etc/.smbcred 0600 root root -"
         "d /mnt/server 0777 ${vars.userId-string} ${vars.groupId-string}"
         "d /mnt/server/Multimedia 0777 ${vars.userId-string} ${vars.groupId-string}"
         "d /mnt/server/Personal 0777 ${vars.userId-string} ${vars.groupId-string}"

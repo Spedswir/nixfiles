@@ -12,15 +12,15 @@ echo "Selected Weekday is: $WEEKDAY"
 echo "Selected hour is: $HOUR"
 
 # Wallpaper Locations
-ALL_DIR="$HOME/git-repos/wallpapers/"
-SFW_DIR="$HOME/git-repos/wallpapers/SFW/"
+ALL_DIR="$HOME/Documents/git-repos/wallpapers/"
+SFW_DIR="$HOME/Documents/git-repos/wallpapers/SFW/"
 
 # Choose folder based on time and day
 if [[ 10#"$WEEKDAY" -le 5 ]]; then
     # Weekday during work hours
     if [[ 10#"$HOUR" -ge 8 && 10#"$HOUR" -lt 17 ]]; then
         echo "Weekday work hours background selected..."
-        DIR="$WORK_DIR"
+        DIR="$SFW_DIR"
     else
         echo "Weekday after hours background selected..."
         DIR="$ALL_DIR"
@@ -31,8 +31,15 @@ else
     DIR="$ALL_DIR"
 fi
 
-# Pick random image
-IMAGE=$(find "$DIR" -type f \( -name "*.jpg" -o -name "*.png" \) | shuf -n 1)
+# Pick a random file from the folder and all its subfolders, skipping hidden
+# files and folders such as .git
+IMAGE=$(find "$DIR" -type f -not -path '*/.*' | shuf -n 1)
+
+if [[ -z "$IMAGE" ]]; then
+    echo "No wallpapers found in $DIR"
+    exit 1
+fi
+echo "Selected wallpaper: $IMAGE"
 
 # Apply wallpaper (Wayland-safe)
 plasma-apply-wallpaperimage "$IMAGE"
