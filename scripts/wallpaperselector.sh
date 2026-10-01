@@ -31,15 +31,41 @@ else
     DIR="$ALL_DIR"
 fi
 
-# Pick a random file from the folder and all its subfolders, skipping hidden
-# files and folders such as .git
-IMAGE=$(find "$DIR" -type f -not -path '*/.*' | shuf -n 1)
+# Ask Plasma how many desktops (one per screen) there are
+QDBUS_ARGS=(org.kde.plasmashell /PlasmaShell org.kde.PlasmaShell.evaluateScript)
+SCREENS=$(qdbus "${QDBUS_ARGS[@]}" 'print(desktops().length)')
+if [[ ! "$SCREENS" =~ ^[0-9]+$ || "$SCREENS" -lt 1 ]]; then
+    SCREENS=1
+fi
+echo "Detected screens: $SCREENS"
 
-if [[ -z "$IMAGE" ]]; then
+# Pick a random file per screen from the folder and all its subfolders,
+# skipping hidden files and folders such as .git
+mapfile -t IMAGES < <(find "$DIR" -type f -not -path '*/.*' | shuf -n "$SCREENS")
+
+if [[ ${#IMAGES[@]} -eq 0 ]]; then
     echo "No wallpapers found in $DIR"
     exit 1
 fi
-echo "Selected wallpaper: $IMAGE"
 
-# Apply wallpaper (Wayland-safe)
-plasma-apply-wallpaperimage "$IMAGE"
+# Build a JavaScript array of the images, escaping backslashes and quotes
+JS_IMAGES=""
+for IMAGE in "${IMAGES[@]}"; do
+    echo "Selected wallpaper: $IMAGE"
+    ESCAPED=${IMAGE//\\/\\\\}
+    ESCAPED=${ESCAPED//\'/\\\'}
+    JS_IMAGES+="'file://$ESCAPED',"
+done
+
+# Apply a different wallpaper to each screen (Wayland-safe). If there are
+# fewer images than screens, images are reused.
+qdbus "${QDBUS_ARGS[@]}" "
+var images = [$JS_IMAGES];
+var allDesktops = desktops();
+for (var i = 0; i < allDesktops.length; i++) {
+    var d = allDesktops[i];
+    d.wallpaperPlugin = 'org.kde.image';
+    d.currentConfigGroup = ['Wallpaper', 'org.kde.image', 'General'];
+    d.writeConfig('Image', images[i % images.length]);
+}
+"
