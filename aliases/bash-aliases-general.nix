@@ -18,7 +18,7 @@ in
         # NixOS updates
         nix-conf-pull = "cd ~/nix-conf/; git pull --rebase";
 
-        # NixOS full cleanup
+        # NixOS full cleanup - This can take a long time
         cleanup = "garbage; nix store optimise";
       };
 
