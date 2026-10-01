@@ -17,12 +17,15 @@ in
 
         # NixOS updates
         nix-conf-pull = "cd ~/nix-conf/; git pull --rebase";
+
+        # NixOS full cleanup
+        cleanup = "garbage; nix store optimise";
       };
 
       initExtra = ''
         # usage: git-commit "message"
         git-commit() {
-          git add . && git commit -m $1 && git push
+          git add . && git commit -m "$1" && git push
         }
       '';
     };
