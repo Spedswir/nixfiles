@@ -9,5 +9,14 @@ in
 
   # enables support for SANE scanners
   hardware.sane.enable = true;
+  # eSCL/AirScan backend for network scanners (e.g. Canon TS9560a)
+  hardware.sane.extraBackends = [ pkgs.sane-airscan ];
   users.users.${vars.username}.extraGroups = [ "scanner" "lp" ];
+
+  # mDNS discovery for network printers/scanners
+  services.avahi = {
+    enable = true;
+    nssmdns4 = true;
+    openFirewall = true;
+  };
 }
