@@ -17,6 +17,9 @@
     package = pkgs.kdePackages.kwallet-pam;
   };
 
+  # Enable KDE Connect and open its firewall ports (1714-1764 TCP/UDP)
+  programs.kdeconnect.enable = true;
+
   # Enable sound with pipewire.
   services.pulseaudio.enable = false;
   security.rtkit.enable = true;
