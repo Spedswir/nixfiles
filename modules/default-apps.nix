@@ -63,6 +63,8 @@
         defaultApplications = defaults;
         associations.added = defaults;
     };
-    # KDE replaces mimeapps.list with a regular file, so overwrite it on rebuild
+    # KDE replaces mimeapps.list with a regular file, so overwrite it on rebuild.
+    # Home Manager writes it to both ~/.config and ~/.local/share/applications.
     xdg.configFile."mimeapps.list".force = true;
+    xdg.dataFile."applications/mimeapps.list".force = true;
 }
