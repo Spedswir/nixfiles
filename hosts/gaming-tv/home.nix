@@ -14,12 +14,14 @@ in
   nixpkgs.config.allowUnfreePredicate = (_: true);
 
   imports = [
-      ../../modules/default-apps.nix
       ../../aliases/bash-aliases-gaming-tv.nix
       ../../modules/terminal/cli-tools/media-download.nix
       ../../modules/gaming/game-launchers.nix
       ../../modules/productivity/bigscreen-apps.nix
+      ../../modules/productivity/multimedia.nix
   ];
+
+  programs.onlyoffice.enable = true;
 
   home.stateVersion = "26.05"; # Please read the comment before changing.
 

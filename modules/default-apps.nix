@@ -33,5 +33,6 @@
         gnome-calculator
         pciutils # For diagnostics, includes lspci
         kdePackages.isoimagewriter
+        claude-code
     ];
 }
