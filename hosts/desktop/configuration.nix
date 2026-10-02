@@ -18,6 +18,7 @@ in
     ../../modules/nixos/printers-scanners.nix
     ../../modules/nixos/wallpapers-sync.nix
     ../../modules/nixos/freetube-sync.nix
+    ../../modules/nixos/virt-manager.nix
   ];
 
   # Add second driver
