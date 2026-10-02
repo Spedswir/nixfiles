@@ -3,6 +3,8 @@
 {
   environment.systemPackages = with pkgs; [
     kdePackages.merkuro
+    # PIM Events plugin: shows Merkuro/Akonadi calendar events in the clock widget's calendar
+    kdePackages.kdepim-addons
   ];
 
   # Enable the X11 windowing system.
