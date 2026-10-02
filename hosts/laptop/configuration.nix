@@ -1,4 +1,4 @@
-{ config, pkgs, inputs, ... }:
+{ config, pkgs, inputs, host, ... }:
 
 let
   vars = import ../../modules/vars.nix;
@@ -19,11 +19,6 @@ in
       ../../modules/nixos/wallpapers-sync.nix
       ../../modules/nixos/freetube-sync.nix
     ];
-
-  # Enable networking
-  networking = {
-    hostName = "${vars.username}-laptop";
-  };
 
   nix.settings = {
     max-jobs = 2;
@@ -52,7 +47,7 @@ in
   };
 
   home-manager = {
-    extraSpecialArgs = { inherit inputs; };
+    extraSpecialArgs = { inherit inputs host; };
     users = {
       "${vars.username}" = import ./home.nix;
     };

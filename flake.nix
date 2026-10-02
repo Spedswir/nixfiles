@@ -27,32 +27,31 @@
     };
   };
 
-  outputs = { self, nixpkgs, ... }@inputs: {
-    nixosConfigurations = {
-      desktop = nixpkgs.lib.nixosSystem {
-        system = "x86_64-linux";
-        modules = [
-          ./hosts/desktop/configuration.nix
-          inputs.home-manager.nixosModules.default
+  outputs = { self, nixpkgs, ... }@inputs:
+  let
+    vars = import ./modules/vars.nix;
 
-          {nixpkgs.overlays = [ inputs.openlinkhub-flake.overlays.default ]; }
-          inputs.openlinkhub-flake.nixosModules.openlinkhub
-        ];
-      };
-      laptop = nixpkgs.lib.nixosSystem {
-        system = "x86_64-linux";
-        modules = [
-          ./hosts/laptop/configuration.nix
-          inputs.home-manager.nixosModules.default
-        ];
-      };
-      gaming-tv = nixpkgs.lib.nixosSystem {
-        system = "x86_64-linux";
-        modules = [
-          ./hosts/gaming-tv/configuration.nix
-          inputs.home-manager.nixosModules.default
-        ];
-      };
+    # Builds a host from ./hosts/<host>/configuration.nix.
+    # `host` is passed to every NixOS and Home Manager module, e.g. for the rebuild aliases.
+    mkHost = host: extraModules: nixpkgs.lib.nixosSystem {
+      specialArgs = { inherit inputs host; };
+      system = "x86_64-linux";
+      modules = [
+        ./hosts/${host}/configuration.nix
+        inputs.home-manager.nixosModules.default
+        # Hosts can override this in their own configuration.nix
+        { networking.hostName = nixpkgs.lib.mkDefault "${vars.username}-${host}"; }
+      ] ++ extraModules;
+    };
+  in
+  {
+    nixosConfigurations = {
+      desktop = mkHost "desktop" [
+        { nixpkgs.overlays = [ inputs.openlinkhub-flake.overlays.default ]; }
+        inputs.openlinkhub-flake.nixosModules.openlinkhub
+      ];
+      laptop = mkHost "laptop" [ ];
+      gaming-tv = mkHost "gaming-tv" [ ];
     };
   };
 }

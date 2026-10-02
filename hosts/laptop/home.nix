@@ -14,7 +14,7 @@ in
 
   imports = [
       ../../modules/default-apps.nix
-      ../../aliases/bash-aliases-laptop.nix
+      ../../aliases/bash-aliases-general.nix
       ../../autostart/autostart-laptop.nix
       ../../modules/languages/japanese.nix
       ../../modules/terminal/cli-tools/media-download.nix

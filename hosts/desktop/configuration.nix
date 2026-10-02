@@ -1,4 +1,4 @@
-{ config, pkgs, inputs, ... }:
+{ config, pkgs, inputs, host, ... }:
 
 let
   vars = import ../../modules/vars.nix;
@@ -29,10 +29,7 @@ in
 
   services.hardware.openlinkhub.enable = true;
 
-  # Enable networking
   networking = {
-    hostName = "${vars.username}-desktop";
-
     firewall = {
       enable = true;
 
@@ -74,7 +71,7 @@ in
   };
 
   home-manager = {
-    extraSpecialArgs = { inherit inputs; };
+    extraSpecialArgs = { inherit inputs host; };
     users = {
       "${vars.username}" = import ./home.nix;
     };

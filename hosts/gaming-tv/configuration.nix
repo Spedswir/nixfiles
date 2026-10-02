@@ -1,4 +1,4 @@
-{ config, pkgs, inputs, ... }:
+{ config, pkgs, inputs, host, ... }:
 
 let
   vars = import ../../modules/vars.nix;
@@ -16,10 +16,6 @@ in
       ../../modules/nixos/grub.nix
       ../../modules/nixos/wallpapers-sync.nix
     ];
-
-  networking = {
-    hostName = "${vars.username}-tv";
-  };
 
   nix.settings = {
     max-jobs = 2;
@@ -43,7 +39,7 @@ in
   };
 
   home-manager = {
-    extraSpecialArgs = { inherit inputs; };
+    extraSpecialArgs = { inherit inputs host; };
     users = {
       "${vars.username}" = import ./home.nix;
     };

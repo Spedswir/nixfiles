@@ -13,7 +13,7 @@ in
   nixpkgs.config.allowUnfree = true;
 
   imports = [
-      ../../aliases/bash-aliases-gaming-tv.nix
+      ../../aliases/bash-aliases-general.nix
       ../../modules/terminal/cli-tools/media-download.nix
       ../../modules/gaming/game-launchers.nix
       ../../modules/productivity/bigscreen-apps.nix
