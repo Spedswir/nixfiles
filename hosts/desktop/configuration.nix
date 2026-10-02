@@ -18,6 +18,8 @@ in
     ../../modules/nixos/printers-scanners.nix
     ../../modules/nixos/wallpapers-sync.nix
     ../../modules/nixos/freetube-sync.nix
+    ../../modules/nixos/firewall/torrent.nix
+    ../../modules/nixos/firewall/desktop.nix
     ../../modules/nixos/virt-manager.nix
   ];
 
@@ -29,21 +31,6 @@ in
   };
 
   services.hardware.openlinkhub.enable = true;
-
-  networking = {
-    firewall = {
-      enable = true;
-
-      allowedTCPPorts = [
-        8000
-      ];
-
-      allowedUDPPorts = [
-        8000
-      ];
-    };
-  };
-
 
   # Work around MediaTek MT7921/MT7922 PCIe power-management issues.
   boot.extraModprobeConfig = ''

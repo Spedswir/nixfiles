@@ -4,6 +4,8 @@ let
     vars = import ../../modules/vars.nix;
 in
 {
+  imports = [ ./firewall/printers.nix ];
+
   # Enable CUPS to print documents.
   services.printing.enable = true;
 
@@ -17,6 +19,5 @@ in
   services.avahi = {
     enable = true;
     nssmdns4 = true;
-    openFirewall = true;
   };
 }

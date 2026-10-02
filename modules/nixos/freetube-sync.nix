@@ -27,15 +27,14 @@ let
   syncedFiles = [ "profiles.db" "history.db" "playlists.db" "search-history.db" ];
 in
 {
+  imports = [ ./firewall/syncthing.nix ];
+
   services.syncthing = {
     enable = true;
     user = vars.username;
     group = "users";
     dataDir = homeDir;
     configDir = "${homeDir}/.local/state/syncthing";
-    # 22000 TCP/UDP for transfers, 21027 UDP for finding the other host on the LAN.
-    openDefaultPorts = true;
-
     # Anything added through the web UI gets reset on rebuild.
     overrideDevices = true;
     overrideFolders = true;
