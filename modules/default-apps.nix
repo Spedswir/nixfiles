@@ -36,13 +36,6 @@
         claude-code
     ];
 
-    xdg.autostart = {
-        enable = true;
-        entries = [
-            "${pkgs.proton-vpn}/share/applications/proton.vpn.app.gtk.desktop"
-        ];
-    };
-
     # Default applications. This makes ~/.config/mimeapps.list read-only, so
     # changing defaults in KDE System Settings won't stick - change them here.
     xdg.mimeApps = let
