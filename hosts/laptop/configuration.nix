@@ -17,6 +17,7 @@ in
       ../../modules/nixos/git-update-timers.nix
       ../../modules/nixos/printers-scanners.nix
       ../../modules/nixos/wallpapers-sync.nix
+      ../../modules/nixos/freetube-sync.nix
     ];
 
   # Enable networking
