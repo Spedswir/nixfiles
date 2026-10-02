@@ -19,7 +19,7 @@ let
   # Device IDs aren't secret. Hosts with an empty ID are left out until it's filled in.
   devices = lib.filterAttrs (_: id: id != "") {
     "${vars.username}-desktop" = "OU3QQFA-53EPLJH-O6BM7IR-RWGBHSW-5TWIOQN-66EW5CE-GQKVOX3-JZRLRQA";
-    "${vars.username}-laptop" = "";
+    "${vars.username}-laptop" = "2FCGJ6S-SPXBCKE-BOJSBM3-H3K6KKI-XHOBJZ2-42ZR6H2-YFFHZEZ-GWDZFAG";
   };
 
   # Only these files are synced, everything else in the folder (caches, cookies, etc.) is ignored.
