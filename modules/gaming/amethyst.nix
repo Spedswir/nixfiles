@@ -15,8 +15,12 @@ in
 appimageTools.wrapType2 {
   inherit pname version src;
 
+  # wrapType2 names the binary after pname, so point the AppImage's desktop entry at it.
   extraInstallCommands = ''
     install -Dm444 ${appimageContents}/${id}.desktop -t $out/share/applications
+    substituteInPlace $out/share/applications/${id}.desktop \
+      --replace-fail 'Exec=${id}' 'Exec=${pname}' \
+      --replace-fail 'Name=Mod Manager' 'Name=Amethyst Mod Manager'
     install -Dm444 ${appimageContents}/${id}.png -t $out/share/pixmaps
   '';
 
@@ -26,7 +30,7 @@ appimageTools.wrapType2 {
     # changelog = "https://github.com/ChrisDKN/Amethyst-Mod-Manager/blob/${finalAttrs.src.rev}/Changelog.txt";
     license = lib.licenses.gpl3Only;
     maintainers = with lib.maintainers; [ legit228 ];
-    mainProgram = "amethyst-mod-manager";
+    mainProgram = pname;
     platforms = lib.platforms.linux;
 
   };
