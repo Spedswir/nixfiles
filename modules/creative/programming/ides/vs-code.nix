@@ -22,6 +22,12 @@
                     }
                 ];
                 "godotTools.lsp.serverPort" = 6005; # port should match your Godot configuration
+                # The extension's bundled claude binary is dynamically linked and won't run on NixOS.
+                # It calls the wrapper as `wrapper <bundled-binary> <args...>`, so drop $1 and use the Nix one.
+                "claudeCode.claudeProcessWrapper" = "${pkgs.writeShellScript "claude-vscode-wrapper" ''
+                    shift
+                    exec ${pkgs.claude-code}/bin/claude "$@"
+                ''}";
             };
             extensions = with pkgs.vscode-extensions; [
                 geequlim.godot-tools # For Godot GDScript support
