@@ -22,6 +22,9 @@
                     }
                 ];
                 "godotTools.lsp.serverPort" = 6005; # port should match your Godot configuration
+                # Open the Strudel panel on play instead of showing the "connect audio" warning.
+                # Same as clicking "Always Show Panel", which can't persist since settings.json is read-only.
+                "strudel.openPanelOnPlay" = true;
                 # The extension's bundled claude binary is dynamically linked and won't run on NixOS.
                 # It calls the wrapper as `wrapper <bundled-binary> <args...>`, so drop $1 and use the Nix one.
                 "claudeCode.claudeProcessWrapper" = "${pkgs.writeShellScript "claude-vscode-wrapper" ''
