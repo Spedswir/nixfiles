@@ -19,7 +19,7 @@
         name = "btop++";
         genericName = "System Monitor";
         icon = "btop";
-        exec = "${config.programs.kitty.package}/bin/kitty --class btop -o remember_window_size=no -o initial_window_width=160c -o initial_window_height=45c ${config.programs.btop.package}/bin/btop";
+        exec = "${config.programs.kitty.package}/bin/kitty --class btop -o remember_window_size=no -o initial_window_width=101c -o initial_window_height=29c ${config.programs.btop.package}/bin/btop";
         terminal = false;
         categories = [ "System" "Monitor" ];
     };

@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-CMD1='koboldcpp --config ~/Models/default.kcpps'
+CMD1='koboldcpp --config ~/Documents/"AI Models"/launch.kcpps'
 CMD2='sillytavern --browserLaunchEnabled false'
 
 TAB1="Koboldcpp"
