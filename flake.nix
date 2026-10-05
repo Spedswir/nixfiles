@@ -25,6 +25,12 @@
       url = "github:tommasie/nix-proton-drive-cli";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    # github.com/Avo-Catto/PulsarFlake - Space Engineers plugin loader
+    pulsar = {
+      url = "github:Avo-Catto/PulsarFlake";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = { self, nixpkgs, ... }@inputs:
