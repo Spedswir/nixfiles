@@ -20,6 +20,7 @@ let
   devices = lib.filterAttrs (_: id: id != "") {
     "${vars.username}-desktop" = "OU3QQFA-53EPLJH-O6BM7IR-RWGBHSW-5TWIOQN-66EW5CE-GQKVOX3-JZRLRQA";
     "${vars.username}-laptop" = "2FCGJ6S-SPXBCKE-BOJSBM3-H3K6KKI-XHOBJZ2-42ZR6H2-YFFHZEZ-GWDZFAG";
+    "Sped-Server" = "L4OFUI3-JN5X5WD-W3KWW6F-RWYEWEF-IHA2HQM-2ZSX3KW-BSUZ7MO-QY2TNAT";
   };
 
   # Only these files are synced, everything else in the folder (caches, cookies, etc.) is ignored.
