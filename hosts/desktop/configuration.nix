@@ -48,6 +48,11 @@ in
   hardware.nvidia.modesetting.enable = true;
   hardware.nvidia.open = true;
 
+  # Load the unused AMD iGPU in stage 1. Otherwise it appears ~6s after SDDM's
+  # kwin starts, and that GPU hotplug breaks the second monitor's output config
+  # on the first login after a cold boot.
+  hardware.amdgpu.initrd.enable = true;
+
   hardware.logitech.wireless.enable = true;
 
   # Enable touchpad support (enabled default in most desktopManager).
