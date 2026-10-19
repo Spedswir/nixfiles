@@ -3,7 +3,8 @@
 let
   # Temporary workaround for the CUDA redistributable output-list bug.
   # Apply it to KoboldCpp's CUDA package set, including its dependencies.
-  fixedCudaPackages = pkgs.cudaPackages.overrideScope (_finalCuda: prevCuda: {
+  # Pinned to CUDA 13.2: the 595 driver rejects PTX from newer toolkits.
+  fixedCudaPackages = pkgs.cudaPackages_13_2.overrideScope (_finalCuda: prevCuda: {
     buildRedist = lib.extendMkDerivation {
       constructDrv = prevCuda.buildRedist;
       extendDrvArgs = _finalAttrs: old: {
