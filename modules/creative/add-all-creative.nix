@@ -7,5 +7,6 @@
         ./video-creation.nix
         ./art-creation.nix
         ./3d-printing.nix
+        ./rpg.nix
     ];
 }
