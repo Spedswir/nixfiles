@@ -5,6 +5,9 @@
     kdePackages.merkuro
     # PIM Events plugin: shows Merkuro/Akonadi calendar events in the clock widget's calendar
     kdePackages.kdepim-addons
+    # Akonadi serializer for calendar items; without it in the system profile,
+    # plasmashell can't decode events ("Item N has no payload") and the widget stays empty
+    kdePackages.akonadi-calendar
   ];
 
   # Enable the X11 windowing system.
