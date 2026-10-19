@@ -2,7 +2,7 @@
 
 {
     home.packages = with pkgs; [
-        gimp
         krita
+        (callPackage ../artcraft-apps.nix { }).photocraft
     ];
 }

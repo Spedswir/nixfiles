@@ -1,7 +1,10 @@
 { config, pkgs, ... }:
 
 {
-    programs.onlyoffice.enable = true;
+    home.packages = with (pkgs.callPackage ../artcraft-apps.nix { }); [
+        wordcraft
+        gridcraft
+    ];
 
     # Settings come from wiki.nixos.org/wiki/Obsidian
     programs.obsidian = {

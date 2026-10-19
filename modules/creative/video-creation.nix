@@ -1,8 +1,9 @@
 { config, pkgs, ... }:
 
 {
-    home.packages = with pkgs; [
-        kdePackages.kdenlive
+    home.packages = with (pkgs.callPackage ../artcraft-apps.nix { }); [
+        filmcraft
+        effectcraft
     ];
 
     programs.obs-studio = {

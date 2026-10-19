@@ -30,6 +30,7 @@ in
   home.stateVersion = "26.05"; # Please read the comment before changing.
 
   home.packages = [
+    (pkgs.callPackage ../../modules/artcraft-apps.nix { }).photocraft
 
   ];
 

@@ -5,5 +5,6 @@
         lycheeslicer
         # prusa-slicer
         orca-slicer
+        (callPackage ../artcraft-apps.nix { }).cadcraft
     ];
 }

@@ -43,7 +43,7 @@
             "text/html" = "brave-browser.desktop";
             "x-scheme-handler/http" = "brave-browser.desktop";
             "x-scheme-handler/https" = "brave-browser.desktop";
-            "text/csv" = "onlyoffice-desktopeditors.desktop";
+            "text/csv" = "ai.storyteller.gridcraft.desktop";
             "application/x-zerosize" = "org.kde.kate.desktop";
             "x-scheme-handler/freetube" = "freetube.desktop";
             "x-scheme-handler/gitkraken" = "gitkraken.desktop";
