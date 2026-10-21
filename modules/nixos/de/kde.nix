@@ -22,6 +22,15 @@
     package = pkgs.kdePackages.kwallet-pam;
   };
 
+  # baloo_file can start before Plasma exports WAYLAND_DISPLAY/DISPLAY to the user
+  # manager; its extractor then aborts on Qt platform init and respawns in a crash loop.
+  # The indexer needs no display, so force the headless platform plugin.
+  # asDropin: the unit ships with Plasma, so only override it rather than replace it.
+  systemd.user.services.kde-baloo = {
+    overrideStrategy = "asDropin";
+    environment.QT_QPA_PLATFORM = "offscreen";
+  };
+
   # Enable KDE Connect and open its firewall ports (1714-1764 TCP/UDP)
   programs.kdeconnect.enable = true;
 
