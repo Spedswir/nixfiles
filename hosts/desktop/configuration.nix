@@ -37,6 +37,11 @@ in
     options mt7921e disable_aspm=1
   '';
 
+  # Work around the onboard Intel I225-V (igc) dropping off the bus with
+  # "PCIe link lost, device now detached" by keeping PCIe links out of
+  # power-saving states.
+  boot.kernelParams = [ "pcie_port_pm=off" "pcie_aspm.policy=performance" ];
+
   nix.settings = {
     max-jobs = 3;
     cores = 14;
