@@ -15,6 +15,7 @@ in
         # AI stuff
         ai-start = "${config.home.homeDirectory}${vars.nixConfDir}/scripts/run_ai.sh";
         kcpp-start = "koboldcpp --config ${config.home.homeDirectory}/Documents/\"AI Models\"/launch.kcpps";
+        kcpp-text = "koboldcpp --config ${config.home.homeDirectory}/Documents/\"AI Models\"/text-only.kcpps";
         st-start = "sillytavern --browserLaunchEnabled false";
 
         # Matrix updates
