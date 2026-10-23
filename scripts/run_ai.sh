@@ -2,9 +2,11 @@
 
 CMD1='koboldcpp --config ~/Documents/"AI Models"/launch.kcpps'
 CMD2='sillytavern --browserLaunchEnabled false'
+CMD3='comfyui'
 
 TAB1="Koboldcpp"
 TAB2="SillyTavern"
+TAB3="ComfyUI"
 
 if [[ -n "${KITTY_WINDOW_ID:-}" ]]; then
     # Already inside Kitty
@@ -12,18 +14,24 @@ if [[ -n "${KITTY_WINDOW_ID:-}" ]]; then
     # Rename the current tab
     kitten @ set-tab-title "$TAB1"
 
-    # Launch command 2 in a new tab, but keep focus on this tab
+    # Launch commands 2 and 3 in new tabs, but keep focus on this tab
     kitten @ launch \
         --type=tab \
         --tab-title "$TAB2" \
         --keep-focus \
         bash -lc "$CMD2; exec bash"
 
+    kitten @ launch \
+        --type=tab \
+        --tab-title "$TAB3" \
+        --keep-focus \
+        bash -lc "$CMD3; exec bash"
+
     # Run command 1 in the current terminal
     exec bash -lc "$CMD1"
 
 else
-    # Not inside Kitty: create a new Kitty window with two tabs
+    # Not inside Kitty: create a new Kitty window with three tabs
 
     SESSION=$(mktemp)
     trap 'rm -f "$SESSION"' EXIT
@@ -34,6 +42,9 @@ launch bash -lc '$CMD1; exec bash'
 
 new_tab $TAB2
 launch bash -lc '$CMD2; exec bash'
+
+new_tab $TAB3
+launch bash -lc '$CMD3; exec bash'
 
 focus_tab 0
 EOF
