@@ -27,11 +27,20 @@ let
     };
   });
 
-  koboldcppPackage = pkgs.koboldcpp.override {
+  koboldcppPackage = (pkgs.koboldcpp.override {
     cublasSupport = true;
     cudaPackages = fixedCudaPackages;
     cudaArches = [ "sm_89" ];
-  };
+  }).overrideAttrs (old: {
+    # nixpkgs copies embd_res/*.embd flat into bin/, but the image generator's tokenizer
+    # loads them from bin/embd_res/, so loading any image model aborts. Link them there too.
+    postInstall = (old.postInstall or "") + ''
+      mkdir -p "$out/bin/embd_res"
+      for f in "$out"/bin/*.embd; do
+        ln -s "../$(basename "$f")" "$out/bin/embd_res/"
+      done
+    '';
+  });
 
   koboldcppCuda = pkgs.writeShellScriptBin "koboldcpp" ''
     export LD_PRELOAD="/run/opengl-driver/lib/libcuda.so.1''${LD_PRELOAD:+:$LD_PRELOAD}"
