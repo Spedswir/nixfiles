@@ -37,6 +37,15 @@ let
     export LD_PRELOAD="/run/opengl-driver/lib/libcuda.so.1''${LD_PRELOAD:+:$LD_PRELOAD}"
     exec ${koboldcppPackage}/bin/koboldcpp "$@"
   '';
+
+  # Upstream typo: the Horde endpoint reads `nfsw`, so the NSFW toggle never reaches Horde
+  # and every image is sent as SFW (and censored). Build fails once upstream fixes it.
+  sillytavernPatched = pkgs.sillytavern.overrideAttrs (old: {
+    postPatch = (old.postPatch or "") + ''
+      substituteInPlace src/endpoints/horde.js \
+        --replace-fail "request.body.nfsw" "request.body.nsfw"
+    '';
+  });
 in
 {
   # The current version of CUDA on nix-pkgs is borked, so locking it to a version for KoboldCpp
@@ -44,7 +53,7 @@ in
   nixpkgs.config.cudaCapabilities = [ "8.9" ];
 
   home.packages = [
-      pkgs.sillytavern
+      sillytavernPatched
       koboldcppCuda
   ];
 }
