@@ -25,6 +25,13 @@ let
         '';
       };
     };
+
+    # NVIDIA re-tagged v2.32.3-1 upstream, so nixpkgs' source hash no longer matches.
+    nccl = prevCuda.nccl.overrideAttrs (old: {
+      src = old.src.overrideAttrs {
+        outputHash = "sha256-GnawQUhgwBYnIzJQt6Y+3SX7Rpi/MyAa0q65VkysSY4=";
+      };
+    });
   });
 
   koboldcppPackage = (pkgs.koboldcpp.override {
@@ -47,6 +54,29 @@ let
     exec ${koboldcppPackage}/bin/koboldcpp "$@"
   '';
 
+  # ComfyUI on the prebuilt CUDA torch wheels, so it neither builds torch from source nor
+  # needs nixpkgs.config.cudaSupport. The wheels link the nixpkgs CUDA libraries, which
+  # default to a release the 595 driver rejects, so they get the pinned 13.2 set too.
+  comfyuiPython = pkgs.python3.override {
+    self = comfyuiPython;
+    # torch-bin itself is overridden because torchvision-bin and torchaudio-bin depend on it by name.
+    packageOverrides = pyFinal: pyPrev: {
+      torch-bin = pyPrev.torch-bin.override { cudaPackages = fixedCudaPackages; };
+      torchvision-bin = pyPrev.torchvision-bin.override { cudaPackages = fixedCudaPackages; };
+      torchaudio-bin = pyPrev.torchaudio-bin.override { cudaPackages = fixedCudaPackages; };
+      torch = pyFinal.torch-bin;
+      torchvision = pyFinal.torchvision-bin;
+      torchaudio = pyFinal.torchaudio-bin;
+    };
+  };
+
+  comfyuiPackage = pkgs.comfyui.override { python3 = comfyuiPython; };
+
+  comfyuiCuda = pkgs.writeShellScriptBin "comfyui" ''
+    export LD_PRELOAD="/run/opengl-driver/lib/libcuda.so.1''${LD_PRELOAD:+:$LD_PRELOAD}"
+    exec ${comfyuiPackage}/bin/comfyui "$@"
+  '';
+
   # Upstream typo: the Horde endpoint reads `nfsw`, so the NSFW toggle never reaches Horde
   # and every image is sent as SFW (and censored). Build fails once upstream fixes it.
   sillytavernPatched = pkgs.sillytavern.overrideAttrs (old: {
@@ -64,5 +94,6 @@ in
   home.packages = [
       sillytavernPatched
       koboldcppCuda
+      comfyuiCuda
   ];
 }
