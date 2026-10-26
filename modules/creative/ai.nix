@@ -70,11 +70,26 @@ let
     };
   };
 
-  comfyuiPackage = pkgs.comfyui.override { python3 = comfyuiPython; };
+  comfyuiPackage = pkgs.comfyui.override {
+    python3 = comfyuiPython;
+    # Node Manager, so workflows can install their missing custom nodes, plus the Python
+    # packages those nodes need, since the Manager cannot pip-install into the store.
+    extraPackages = ps: [
+      ps.comfyui-manager
+      # ComfyUI_Comfyroll_CustomNodes
+      ps.matplotlib
+      ps.arabic-reshaper
+      ps.python-bidi
+      # ComfyUI_Mira
+      ps.opencv-python-headless
+      ps.piexif
+      ps.onnxruntime
+    ];
+  };
 
   comfyuiCuda = pkgs.writeShellScriptBin "comfyui" ''
     export LD_PRELOAD="/run/opengl-driver/lib/libcuda.so.1''${LD_PRELOAD:+:$LD_PRELOAD}"
-    exec ${comfyuiPackage}/bin/comfyui "$@"
+    exec ${comfyuiPackage}/bin/comfyui --enable-manager "$@"
   '';
 
   # Upstream typo: the Horde endpoint reads `nfsw`, so the NSFW toggle never reaches Horde
@@ -85,6 +100,9 @@ let
         --replace-fail "request.body.nfsw" "request.body.nsfw"
     '';
   });
+
+  # ai-code: KoboldCpp with code.kcpps and Claude Code connected to it, started in ~.
+  aiCode = pkgs.writeShellScriptBin "ai-code" (builtins.readFile ../../scripts/run_ai_code.sh);
 in
 {
   # The current version of CUDA on nix-pkgs is borked, so locking it to a version for KoboldCpp
@@ -95,5 +113,6 @@ in
       sillytavernPatched
       koboldcppCuda
       comfyuiCuda
+      aiCode
   ];
 }
