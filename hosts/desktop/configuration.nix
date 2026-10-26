@@ -19,6 +19,7 @@ in
     ../../modules/nixos/wallpapers-sync.nix
     ../../modules/nixos/freetube-sync.nix
     ../../modules/nixos/firewall/torrent.nix
+    ../../modules/nixos/disk-tools.nix
     ../../modules/nixos/firewall/desktop.nix
     ../../modules/nixos/virt-manager.nix
   ];
