@@ -22,6 +22,7 @@ in
     ../../modules/nixos/disk-tools.nix
     ../../modules/nixos/firewall/desktop.nix
     ../../modules/nixos/virt-manager.nix
+    ../../modules/nixos/gpu-unlock.nix
   ];
 
   # Add second driver
