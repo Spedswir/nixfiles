@@ -47,20 +47,30 @@ let
     '';
   };
 
-  module = config.boot.kernelPackages.callPackage ({ stdenv, kernel }:
+  module = config.boot.kernelPackages.callPackage ({ stdenv, kernel, kernelModuleMakeFlags }:
     stdenv.mkDerivation {
       pname = "gpu-unlock";
       version = "${version}-${kernel.version}";
       inherit src;
       sourceRoot = "source/kernel/gpu_unlock";
 
+      __structuredAttrs = true;
       nativeBuildInputs = kernel.moduleBuildDependencies;
       hardeningDisable = [ "pic" "format" ];
-      makeFlags = [ "KDIR=${kernel.dev}/lib/modules/${kernel.modDirVersion}/build" ];
+      makeFlags = kernelModuleMakeFlags;
+
+      # Go through the kernel's build system directly: nixpkgs needs the
+      # gpu_unlock.ko.cer that modules_install produces with these flags.
+      buildPhase = ''
+        runHook preBuild
+        make -C ${kernel.dev}/lib/modules/${kernel.modDirVersion}/build M=$PWD modules "''${makeFlags[@]}"
+        runHook postBuild
+      '';
 
       installPhase = ''
         runHook preInstall
-        install -Dm644 gpu_unlock.ko $out/lib/modules/${kernel.modDirVersion}/extra/gpu_unlock.ko
+        make -C ${kernel.dev}/lib/modules/${kernel.modDirVersion}/build M=$PWD modules_install \
+          "''${makeFlags[@]}" INSTALL_MOD_PATH=$out DEPMOD=true
         runHook postInstall
       '';
     }) { };
