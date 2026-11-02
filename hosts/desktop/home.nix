@@ -34,6 +34,12 @@ in
   home.stateVersion = "26.05"; # Please read the comment before changing.
 
   home.packages = [
+    # Nintendo Switch emulator (community fork of Ryujinx). Its data lives in ~/.config/Ryujinx:
+    #   - prod.keys and title.keys (dumped from your Switch) go in ~/.config/Ryujinx/system/
+    #   - Firmware: Tools > Install Firmware, pointed at the firmware .zip or folder (installs into bis/)
+    #   - Games (.nsp/.xci) can live anywhere; add the folder under Options > Settings > General > Game Directories
+    pkgs.ryubing
+    (pkgs.callPackage ../../modules/gaming/ultratears.nix { }) # UltraTears, native TotK port (github.com/kuraeow/ultratears)
   ];
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
