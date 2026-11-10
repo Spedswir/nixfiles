@@ -1,11 +1,6 @@
 { config, pkgs, ... }:
 
 {
-    home.packages = with (pkgs.callPackage ../artcraft-apps.nix { }); [
-        filmcraft
-        effectcraft
-    ];
-
     programs.obs-studio = {
         enable = true;
 

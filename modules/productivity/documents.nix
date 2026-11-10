@@ -1,9 +1,8 @@
 { config, pkgs, ... }:
 
 {
-    home.packages = with (pkgs.callPackage ../artcraft-apps.nix { }); [
-        wordcraft
-        gridcraft
+    home.packages = with pkgs; [
+        libreoffice
     ];
 
     # Settings come from wiki.nixos.org/wiki/Obsidian

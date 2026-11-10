@@ -29,9 +29,9 @@ in
 
   home.stateVersion = "26.05"; # Please read the comment before changing.
 
-  home.packages = [
-    (pkgs.callPackage ../../modules/artcraft-apps.nix { }).photocraft
-
+  home.packages = with pkgs; [
+    gimp
+    krita
   ];
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage

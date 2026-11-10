@@ -14,6 +14,5 @@
                     --set WEBKIT_DISABLE_DMABUF_RENDERER 1
             '';
         })
-        (callPackage ../artcraft-apps.nix { }).cadcraft
     ];
 }
