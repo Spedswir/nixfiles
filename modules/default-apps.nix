@@ -10,10 +10,10 @@
       ./creative/media-editing.nix
     ];
 
-    # Install Brave and ensure that specific extensions are installed.
+    # Install Chromium and ensure that specific extensions are installed.
     programs.chromium = {
       enable = true;
-      package = pkgs.brave;
+      package = pkgs.chromium;
       extensions = [
         { id = "ghmbeldphafepmbegfdlkpapadhbakde"; } # Proton Pass
         { id = "jplgfhpmjnbigmhklmmbgecoobifkmpa"; } # Proton VPN
@@ -40,9 +40,9 @@
     # changing defaults in KDE System Settings won't stick - change them here.
     xdg.mimeApps = let
         defaults = {
-            "text/html" = "brave-browser.desktop";
-            "x-scheme-handler/http" = "brave-browser.desktop";
-            "x-scheme-handler/https" = "brave-browser.desktop";
+            "text/html" = "chromium-browser.desktop";
+            "x-scheme-handler/http" = "chromium-browser.desktop";
+            "x-scheme-handler/https" = "chromium-browser.desktop";
             "text/csv" = "calc.desktop";
             "application/x-zerosize" = "org.kde.kate.desktop";
             "x-scheme-handler/freetube" = "freetube.desktop";

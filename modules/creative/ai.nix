@@ -25,13 +25,6 @@ let
         '';
       };
     };
-
-    # NVIDIA re-tagged v2.32.3-1 upstream, so nixpkgs' source hash no longer matches.
-    nccl = prevCuda.nccl.overrideAttrs (old: {
-      src = old.src.overrideAttrs {
-        outputHash = "sha256-GnawQUhgwBYnIzJQt6Y+3SX7Rpi/MyAa0q65VkysSY4=";
-      };
-    });
   });
 
   koboldcppPackage = (pkgs.koboldcpp.override {
