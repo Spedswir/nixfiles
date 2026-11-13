@@ -22,12 +22,21 @@ in
         background_tint = 0.5;
         confirm_os_window_close = 0;
         allow_remote_control = "yes";
+        # Run fish inside kitty. The login shell stays bash, so TTYs, SSH and scripts are unaffected.
+        shell = "${config.programs.fish.package}/bin/fish";
       };
 
       themeFile = "AdventureTime";
     };
+    fish = {
+      enable = true;
+      interactiveShellInit = ''
+        set -g fish_greeting # Disable the welcome message
+      '';
+    };
     starship = {
       enable = true;
+      # Home Manager hooks the prompt into every enabled shell (bash and fish).
       settings = {
         command_timeout = 5000;
         add_newline = false;

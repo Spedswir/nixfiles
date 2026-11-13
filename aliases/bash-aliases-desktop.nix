@@ -9,8 +9,8 @@ in
     ./bash-aliases-general.nix
   ];
 
-  programs = {
-    bash = {
+  # home.shellAliases applies to every enabled shell (bash and fish).
+  home = {
       shellAliases = {
         # AI stuff
         ai-text = "${config.home.homeDirectory}${vars.nixConfDir}/scripts/run_ai_text.sh";
@@ -23,6 +23,5 @@ in
         matrix-update-git = "cd ~/Documents/git-repos/matrix-docker-ansible-deploy/; git reset --hard; git pull --rebase; just roles";
         matrix-update-server = "cd ~/Documents/git-repos/matrix-docker-ansible-deploy/; sudo ansible-playbook -i inventory/hosts setup.yml --tags=setup-all,ensure-matrix-users-created,start --ask-pass";
       };
-    };
   };
 }

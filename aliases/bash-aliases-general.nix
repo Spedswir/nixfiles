@@ -19,6 +19,20 @@ in
     bash = {
       enable = true;
 
+      initExtra = ''
+        # usage: git-commit "message"
+        git-commit() {
+          git add . && git commit -m "$1" && git push
+        }
+      '';
+    };
+
+    # Same function for fish (only takes effect where fish is enabled).
+    fish.functions.git-commit = "git add . && git commit -m $argv[1] && git push";
+  };
+
+  # home.shellAliases applies to every enabled shell (bash and fish).
+  home = {
       shellAliases = {
         # NixOS rebuilds for this host
         rebuild = "${flakeUpdate}; sudo nixos-rebuild switch --flake ${flake}";
@@ -38,13 +52,5 @@ in
         # NixOS full cleanup - This can take a long time
         cleanup = "garbage; nix store optimise";
       };
-
-      initExtra = ''
-        # usage: git-commit "message"
-        git-commit() {
-          git add . && git commit -m "$1" && git push
-        }
-      '';
-    };
   };
 }
