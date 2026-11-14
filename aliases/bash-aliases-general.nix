@@ -11,6 +11,22 @@ let
     desktop = "--cores 6 -j 3";
   };
   rebuildLimit = rebuildLimits.${host} or "--cores 4 -j 2";
+
+  # Runs the given command string, but first warns if a VPN is up and asks before continuing.
+  # Proton VPN uses proton0 (WireGuard) or tun* (OpenVPN); wg* catches other WireGuard tunnels.
+  vpnGuard = pkgs.writeShellScript "vpn-guard" ''
+    vpns=$(ls /sys/class/net | grep -E '^(proton|tun|wg)[0-9]*$' || true)
+    if [ -n "$vpns" ]; then
+      printf '\e[1;33mWarning:\e[0m a VPN is connected (%s). Disconnect it before rebuilding.\n' "$(echo $vpns)"
+      read -r -p "Continue anyway? [y/N] " answer
+      case "$answer" in
+        [yY]*) ;;
+        *) echo "Rebuild cancelled."; exit 1 ;;
+      esac
+    fi
+    exec ${pkgs.bash}/bin/bash -c "$1"
+  '';
+  guarded = cmd: "${vpnGuard} '${cmd}'";
 in
 {
   programs = {
@@ -35,12 +51,13 @@ in
   home = {
       shellAliases = {
         # NixOS rebuilds for this host
-        rebuild = "${flakeUpdate}; sudo nixos-rebuild switch --flake ${flake}";
-        rebuild-verbose = "${flakeUpdate}; sudo nixos-rebuild switch --flake ${flake} --show-trace";
-        rebuild-dry = "sudo nixos-rebuild dry-build --flake ${flake}";
-        rebuild-dry-verbose = "sudo nixos-rebuild dry-build --flake ${flake} --show-trace";
+        # Each one warns and asks first if a VPN is connected (see vpnGuard above).
+        rebuild = guarded "${flakeUpdate}; sudo nixos-rebuild switch --flake ${flake}";
+        rebuild-verbose = guarded "${flakeUpdate}; sudo nixos-rebuild switch --flake ${flake} --show-trace";
+        rebuild-dry = guarded "sudo nixos-rebuild dry-build --flake ${flake}";
+        rebuild-dry-verbose = guarded "sudo nixos-rebuild dry-build --flake ${flake} --show-trace";
         # This stops a rebuild of something like CUDE eating all of the CPU cores and RAM and crashing the PC.
-        rebuild-limit = "${flakeUpdate}; sudo nixos-rebuild switch --flake ${flake} ${rebuildLimit}";
+        rebuild-limit = guarded "${flakeUpdate}; sudo nixos-rebuild switch --flake ${flake} ${rebuildLimit}";
 
         # NixOS Garbage Collection
         garbage = "sudo nix-collect-garbage --delete-older-than 14d";

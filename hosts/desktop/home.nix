@@ -21,6 +21,7 @@ in
     ../../modules/gaming/game-launchers.nix
     ../../modules/gaming/mod-managers.nix
     ../../modules/gaming/games-peripherals.nix
+    ../../modules/gaming/programming-games.nix
     ../../modules/hardware/desktop-hardware.nix
     ../../modules/creative/add-all-creative.nix
     ../../modules/creative/ai.nix
