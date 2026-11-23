@@ -8,6 +8,7 @@
       ./productivity/multimedia.nix
       ./productivity/documents.nix
       ./creative/media-editing.nix
+      ./productivity/qbittorrent.nix
     ];
 
     # Install Chromium and ensure that specific extensions are installed.
@@ -28,7 +29,6 @@
         proton-vpn
         qdirstat
         nix-search-tv
-        qbittorrent
         librewolf-bin
         gnome-calculator
         pciutils # For diagnostics, includes lspci
