@@ -22,6 +22,7 @@ in
       ../../modules/gaming/mod-managers.nix
       ../../modules/hardware/logitech.nix
       ../../modules/productivity/cli-gui-tools.nix
+      ../../modules/productivity/remmina-westate.nix
       ../../modules/fonts.nix
       ../../modules/wallpaper-selector.nix
       ../../modules/online-accounts/protondrive.nix

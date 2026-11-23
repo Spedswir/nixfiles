@@ -5,5 +5,6 @@
         github-desktop
         parabolic # gui frontend for yt-dlp
         speedtest-cli # internet speed test via speedtest.net
+        remmina # remote desktop client (RDP/VNC/SSH)
     ];
 }

@@ -20,6 +20,8 @@ in
     ../../modules/nixos/freetube-sync.nix
     ../../modules/nixos/firewall/torrent.nix
     ../../modules/nixos/disk-tools.nix
+    ../../modules/nixos/l2tp-vpn.nix
+    ../../modules/nixos/westate-vpn.nix
     ../../modules/nixos/firewall/desktop.nix
     ../../modules/nixos/virt-manager.nix
     ../../modules/nixos/gpu-unlock.nix

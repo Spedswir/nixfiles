@@ -26,6 +26,7 @@ in
     ../../modules/creative/add-all-creative.nix
     ../../modules/creative/ai.nix
     ../../modules/productivity/cli-gui-tools.nix
+    ../../modules/productivity/remmina-westate.nix
     ../../modules/terminal/cli-tools/ansible.nix
     ../../modules/fonts.nix
     ../../modules/wallpaper-selector.nix
