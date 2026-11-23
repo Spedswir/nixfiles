@@ -25,6 +25,7 @@ in
       ../../modules/fonts.nix
       ../../modules/wallpaper-selector.nix
       ../../modules/online-accounts/protondrive.nix
+      ../../modules/online-accounts/mega.nix
   ];
 
   home.stateVersion = "26.05"; # Please read the comment before changing.

@@ -30,6 +30,7 @@ in
     ../../modules/fonts.nix
     ../../modules/wallpaper-selector.nix
     ../../modules/online-accounts/protondrive.nix
+    ../../modules/online-accounts/mega.nix
   ];
 
   home.stateVersion = "26.05"; # Please read the comment before changing.
@@ -41,6 +42,8 @@ in
     #   - Games (.nsp/.xci) can live anywhere; add the folder under Options > Settings > General > Game Directories
     pkgs.ryubing
     (pkgs.callPackage ../../modules/gaming/ultratears.nix { }) # UltraTears, native TotK port (github.com/kuraeow/ultratears)
+    # Lichii, Switch/Switch 2 emulator (github.com/zortos293/Lichii). Data in ~/.local/share/lichii and ~/.config/lichii
+    (pkgs.callPackage ../../modules/gaming/lichii.nix { })
   ];
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
