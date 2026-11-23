@@ -9,6 +9,7 @@ in
       ./hardware-configuration.nix
       ../../modules/nixos/network-drives.nix
       ../../modules/nixos/users.nix
+      ../../modules/nixos/hm-failure-notify.nix
       ../../modules/nixos/gaming.nix
       ../../modules/nixos/bluetooth.nix
       ../../modules/nixos/de/kde-bigscreen.nix

@@ -24,7 +24,18 @@ let
         *) echo "Rebuild cancelled."; exit 1 ;;
       esac
     fi
-    exec ${pkgs.bash}/bin/bash -c "$1"
+    ${pkgs.bash}/bin/bash -c "$1"
+    status=$?
+
+    # A failed Home Manager activation leaves user packages and dotfiles on the old
+    # generation, and nixos-rebuild only mentions it in a one-line warning. Make it loud.
+    hm=home-manager-${vars.username}.service
+    if systemctl is-failed --quiet "$hm"; then
+      printf '\n\e[1;31mHome Manager activation failed:\e[0m user packages and dotfiles were NOT updated.\n'
+      journalctl -u "$hm" -n 40 --no-pager -o cat | grep -E "clobbered|error" | head -5
+      printf 'Details: journalctl -u %s\n' "$hm"
+    fi
+    exit $status
   '';
   guarded = cmd: "${vpnGuard} '${cmd}'";
 in
