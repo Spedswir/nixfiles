@@ -30,7 +30,6 @@ let
   koboldcppPackage = (pkgs.koboldcpp.override {
     cublasSupport = true;
     cudaPackages = fixedCudaPackages;
-    cudaArches = [ "sm_89" ];
   }).overrideAttrs (old: {
     # nixpkgs copies embd_res/*.embd flat into bin/, but the image generator's tokenizer
     # loads them from bin/embd_res/, so loading any image model aborts. Link them there too.
