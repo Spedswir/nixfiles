@@ -37,6 +37,10 @@ in
 
   services.hardware.openlinkhub.enable = true;
 
+  # Steam, Faugus, Heroic, Prism, Lichii and their games default to the GoXLR Mini's "Game" channel.
+  # (On this GoXLR the Game channel is the Line1 sink; see gaming.audioSink in modules/nixos/gaming.nix.)
+  gaming.audioSink = "alsa_output.usb-TC-Helicon_GoXLRMini-00.HiFi__Line1__sink";
+
   # Work around MediaTek MT7921/MT7922 PCIe power-management issues.
   boot.extraModprobeConfig = ''
     options mt7921e disable_aspm=1
